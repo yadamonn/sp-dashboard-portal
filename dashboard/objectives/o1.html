@@ -125,6 +125,7 @@
     display: inline-block; font-size: 0.72rem; font-weight: 600;
     padding: 0.15rem 0.55rem; border-radius: 4px;
     background: var(--gray-3); color: var(--gray-11);
+    white-space: nowrap;
   }
   .status-on-track { background: #e6f6ec; color: #218358; }
   .status-at-risk { background: #fff4d5; color: #ad6800; }
@@ -143,14 +144,16 @@
     width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem;
   }
   .measure-table th, .measure-table td {
-    text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--gray-3);
+    text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--gray-3);
     vertical-align: top;
   }
   .measure-table th { font-weight: 600; color: var(--gray-11); font-size: 0.75rem; }
   .measure-table tr:last-child td { border-bottom: none; }
-  .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
-  .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
-  .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+  .measure-name { font-weight: 600; color: var(--gray-12); width: 26%; }
+  .measure-progress { color: var(--gray-12); font-size: 0.88rem; line-height: 1.65; }
+  .measure-next { color: var(--gray-12); font-size: 0.88rem; line-height: 1.65; }
+  .measure-table th:nth-child(2),
+  .measure-table td:nth-child(2) { width: 7em; min-width: 7em; }
   .kr-q1-target {
     font-size: 0.85rem; color: var(--gray-12); margin: 0.5rem 0 0;
     padding: 0.55rem 0.85rem; background: var(--gray-2); border-radius: 6px;
@@ -344,28 +347,28 @@
 <h4>📂 リポジトリ内 関連リソース</h4>
 <p><strong>戦略・資料（Drive sync）</strong></p>
 <ul>
-<li><a href="../O1_進学マッチング/">O1_進学マッチング/</a> — Drive戦略資料（プロダクト側）</li>
-<li><a href="../事業部_Ads/大学広告事業/">事業部_Ads/大学広告事業/</a> — 個別大学資料・媒体資料・商談ログ・デジマ月次・出願レポート</li>
-<li><a href="../事業部_Ads/総合広告事業/">事業部_Ads/総合広告事業/</a> — 模試・イベントマッチング・クイズ企画・マンスリーチャレンジ</li>
-<li><a href="../経営・全社/中期計画/">経営・全社/中期計画/</a> — 中期事業計画_プロダクト部_FY2026-2030</li>
+<li>O1_進学マッチング/ — Drive戦略資料（プロダクト側）</li>
+<li>事業部_Ads/大学広告事業/ — 個別大学資料・媒体資料・商談ログ・デジマ月次・出願レポート</li>
+<li>事業部_Ads/総合広告事業/ — 模試・イベントマッチング・クイズ企画・マンスリーチャレンジ</li>
+<li>経営・全社/中期計画/ — 中期事業計画_プロダクト部_FY2026-2030</li>
 </ul>
 <p><strong>議事録（Drive sync）</strong></p>
 <ul>
-<li><a href="../議事録/CrossFunctional/">議事録/CrossFunctional/</a> — Adsプロダクト戦略会議（週次）/ 進学マッチング定例 / 大学広告事業部_広告商品戦略会議</li>
-<li><a href="../議事録/Corporate/">議事録/Corporate/</a> — プロダクト方針検討会（隔週）</li>
+<li>議事録/CrossFunctional/ — Adsプロダクト戦略会議（週次）/ 進学マッチング定例 / 大学広告事業部_広告商品戦略会議</li>
+<li>議事録/Corporate/ — プロダクト方針検討会（隔週）</li>
 </ul>
 <p><strong>Notion DB（自動同期）</strong></p>
 <ul>
-<li><a href="../Notion/O1_進学マッチング/進学マッチング_タスクボード/">Notion/O1_進学マッチング/進学マッチング_タスクボード/</a></li>
-<li><a href="../Notion/O1_進学マッチング/進学マッチング指標達成のための施策/">Notion/O1_進学マッチング/進学マッチング指標達成のための施策/</a></li>
-<li><a href="../Notion/O1_進学マッチング/進学マッチング開発アイテム見立て/">Notion/O1_進学マッチング/進学マッチング開発アイテム見立て/</a></li>
+<li>Notion/O1_進学マッチング/進学マッチング_タスクボード/</li>
+<li>Notion/O1_進学マッチング/進学マッチング指標達成のための施策/</li>
+<li>Notion/O1_進学マッチング/進学マッチング開発アイテム見立て/</li>
 </ul>
 <p><strong>Slackチャンネル（過去3日分が </strong><code><strong>Slack/{日付}/{ch}.md</strong></code><strong> に取り込み）</strong></p>
 <ul>
-<li><code>#prod_adsプロダクト戦略会議</code> / <code>#prod-ads_discussion</code></li>
-<li><code>#prod_pjt_進学マッチングall</code> / <code>#pjt_進学マッチング_ai進路相談</code></li>
-<li><code>#prod_pjt_塾予備校集客支援</code></li>
-<li><code>#大学広告事業部_all</code> / <code>#ads_大学広告事業部_商談報告</code> / <code>#studyplus_ads事業本部</code></li>
+<li><a href="https://studyplus.slack.com/app_redirect?channel=prod_ads%E3%83%97%E3%83%AD%E3%83%80%E3%82%AF%E3%83%88%E6%88%A6%E7%95%A5%E4%BC%9A%E8%AD%B0"><code>#prod_adsプロダクト戦略会議</code></a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod-ads_discussion"><code>#prod-ads_discussion</code></a></li>
+<li><a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0all"><code>#prod_pjt_進学マッチングall</code></a> / <a href="https://studyplus.slack.com/app_redirect?channel=pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0_ai%E9%80%B2%E8%B7%AF%E7%9B%B8%E8%AB%87"><code>#pjt_進学マッチング_ai進路相談</code></a></li>
+<li><a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%A1%BE%E4%BA%88%E5%82%99%E6%A0%A1%E9%9B%86%E5%AE%A2%E6%94%AF%E6%8F%B4"><code>#prod_pjt_塾予備校集客支援</code></a></li>
+<li><a href="https://studyplus.slack.com/app_redirect?channel=%E5%A4%A7%E5%AD%A6%E5%BA%83%E5%91%8A%E4%BA%8B%E6%A5%AD%E9%83%A8_all"><code>#大学広告事業部_all</code></a> / <a href="https://studyplus.slack.com/app_redirect?channel=ads_%E5%A4%A7%E5%AD%A6%E5%BA%83%E5%91%8A%E4%BA%8B%E6%A5%AD%E9%83%A8_%E5%95%86%E8%AB%87%E5%A0%B1%E5%91%8A"><code>#ads_大学広告事業部_商談報告</code></a> / <a href="https://studyplus.slack.com/app_redirect?channel=studyplus_ads%E4%BA%8B%E6%A5%AD%E6%9C%AC%E9%83%A8"><code>#studyplus_ads事業本部</code></a></li>
 </ul>
 <h4>Notion / Figma / Drive（外部リンク）</h4>
 <h4>進学マッチング・AI進路相談（KR1-3）</h4>
@@ -384,7 +387,7 @@
 </ul>
 <h4>塾予備校集客支援（KR4）</h4>
 <ul>
-<li><a href="../Projects/塾予備校集客支援/overview.md">executive/Projects/塾予備校集客支援/overview.md</a></li>
+<li>executive/Projects/塾予備校集客支援/overview.md</li>
 <li><a href="https://docs.google.com/spreadsheets/d/1cWbW9BDc1GBa3r_VnpEU393KV9QuL_rnt39ocPx8VFI/edit">FY2026_総合_模試・イベント送客支援</a></li>
 <li><a href="https://docs.google.com/document/d/1G2Fhd0RwabliYS9D6namq0Q4KfMOJd688WKIZdYof4A/edit">【会議メモ】塾予備校向け集客支援機能</a></li>
 </ul>
@@ -409,7 +412,7 @@
     <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
   </ul>
   <p class="credit">
-    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:43 (JST)<br>
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:52 (JST)<br>
     Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
   </p>
 </footer>

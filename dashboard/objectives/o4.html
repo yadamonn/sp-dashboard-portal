@@ -99,12 +99,12 @@
   .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
   .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
   .h-tag {
-    display: inline-block; font-size: 0.7rem; font-weight: 700;
-    padding: 0.15rem 0.5rem; border-radius: 4px;
-    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+    display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.02em;
+    padding: 0.1rem 0.45rem; border-radius: 3px;
+    background: var(--gray-3); color: var(--gray-11); margin-bottom: 0.45rem;
   }
-  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
-  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-title { font-size: 1.02rem; font-weight: 600; margin: 0 0 0.5rem; color: var(--gray-12); line-height: 1.5; }
+  .h-text { font-size: 0.92rem; color: var(--gray-12); margin: 0; line-height: 1.7; }
   .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
   .h-text a:hover { text-decoration: underline; }
 
@@ -151,6 +151,13 @@
   .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
   .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
   .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+  .kr-q1-target {
+    font-size: 0.85rem; color: var(--gray-12); margin: 0.5rem 0 0;
+    padding: 0.55rem 0.85rem; background: var(--gray-2); border-radius: 6px;
+    border-left: 2px solid var(--o-current);
+  }
+  .kr-q1-target strong { color: var(--gray-12); margin-right: 0.3rem; }
+  .kr-q1 { font-size: 0.83rem; color: var(--gray-11); }
 
   /* Discussion / Resources */
   .section-block {
@@ -194,14 +201,7 @@
   <span class="o-pill">O4</span>
   <h1>AI駆動開発+全社業務自動化</h1>
   <div class="o-objective">AI駆動開発と全社業務自動化により、開発スループット+100%・年3000万コスト削減を実現している状態</div>
-  <dl class="meta-bar">
-    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
-    <div><dt>全社OKR連動</dt><dd>全社O3 (Weight 20%)</dd></div>
-    <div><dt>主要責任者</dt><dd><strong>主要責任者</strong>: 島田豊（KR1-3 主担当）/ 大石弘一郎（KR4-5 主担当）/ 澤田 / 伊尾木 / 菅原健人 / 中島花絵</dd></div>
-    <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
-    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: AI駆動開発PJ定例（週次）/ AI経営基盤PJ定例 / 「最強の仕様書を考える会」/ 4/14 AI経営基盤MTG</dd></div>
-    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA">#prod_pjt_ai駆動開発</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E7%B5%8C%E5%96%B6%E5%9F%BA%E7%9B%A4">#prod_pjt_ai経営基盤</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%85%A8%E7%A4%BE%E6%A5%AD%E5%8B%99%E5%8A%B9%E7%8E%87%E5%8C%96">#prod_pjt_全社業務効率化</a></dd></div>
-  </dl>
+  <p style="font-size:0.82rem; color:var(--gray-9); margin:0.5rem 0 0;">最終更新: 2026-05-07</p>
 </header>
 
 <h2>🔔 今週のハイライト</h2>
@@ -250,36 +250,73 @@
 
 <h2>1. Key Results 一覧</h2>
 <table class="kr-table">
-<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<thead><tr><th>KR</th><th>年間目標</th><th>1Q目標</th><th>ステータス</th><th>責任者</th></tr></thead>
 <tbody>
-<tr><td><span class="kr-id">O4-KR1</span></td><td>開発生産性をFY2025対比で+100%向上（merged PR数/エンジニア/月）</td><td><span class="status-badge status-done">進行中</span></td><td></td></tr>
-<tr><td><span class="kr-id">O4-KR2</span></td><td>上流工程（要件定義・仕様策定）リードタイム50%圧縮</td><td><span class="status-badge status-done">進行中</span></td><td></td></tr>
-<tr><td><span class="kr-id">O4-KR3</span></td><td>ユーザー投稿監視の自動化により監視にかかる人的工数を90%削減（教材レビュー/画像チェック含む）</td><td><span class="status-badge status-not-started">未着手</span></td><td>大石弘一郎</td></tr>
-<tr><td><span class="kr-id">O4-KR4</span></td><td>SaaS解約・内製化により2026年9月までに500万円コスト削減（FY2026年間で3,000万円達成）</td><td><span class="status-badge status-done">進行中</span></td><td>大石弘一郎</td></tr>
-<tr><td><span class="kr-id">O4-KR5</span></td><td>TBD：事業部の業務効率化を支援（AIエージェント等による自動化・効率化）し、営業職の業務時間20%削減・デジマ職30%削減に貢献</td><td><span class="status-badge status-not-started">未着手</span></td><td></td></tr>
+<tr><td><span class="kr-id">O4-KR1</span></td><td>開発生産性をFY2025対比で+100%向上（merged PR数/エンジニア/月）</td><td class="kr-q1"><span style="color:var(--gray-9);">—</span></td><td><span class="status-badge status-done">進行中</span></td><td></td></tr>
+<tr><td><span class="kr-id">O4-KR2</span></td><td>上流工程（要件定義・仕様策定）リードタイム50%圧縮</td><td class="kr-q1">PdMのAIエージェント活用（claude/miko.epic）、エンジニア上流工程関与の開始</td><td><span class="status-badge status-done">進行中</span></td><td></td></tr>
+<tr><td><span class="kr-id">O4-KR3</span></td><td>ユーザー投稿監視の自動化により監視にかかる人的工数を90%削減（教材レビュー/画像チェック含む）</td><td class="kr-q1"><span style="color:var(--gray-9);">—</span></td><td><span class="status-badge status-not-started">未着手</span></td><td>大石弘一郎</td></tr>
+<tr><td><span class="kr-id">O4-KR4</span></td><td>SaaS解約・内製化により2026年9月までに500万円コスト削減（FY2026年間で3,000万円達成）</td><td class="kr-q1"><span style="color:var(--gray-9);">—</span></td><td><span class="status-badge status-done">進行中</span></td><td>大石弘一郎</td></tr>
+<tr><td><span class="kr-id">O4-KR5</span></td><td>TBD：事業部の業務効率化を支援（AIエージェント等による自動化・効率化）し、営業職の業務時間20%削減・デジマ職30%削減に貢献</td><td class="kr-q1"><span style="color:var(--gray-9);">—</span></td><td><span class="status-badge status-not-started">未着手</span></td><td></td></tr>
 </tbody>
 </table>
 
 <h2>2. KR別 進捗状況</h2>
 <div class="kr-detail">
   <h3><span class="kr-id">O4-KR1</span> 開発生産性をFY2025対比で+100%向上（merged PR数/エンジニア/月）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">PR分析・生産性測定</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">5/6定例でスクラムのデイリー廃止案を議論し、廃止せず徐々に改善する方針を確認。</td><td class="measure-next">デイリーの運用改善案を山田・澤田で継続検討</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O4-KR2</span> 上流工程（要件定義・仕様策定）リードタイム50%圧縮</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  <p class="kr-q1-target"><strong>1Q目標:</strong> PdMのAIエージェント活用（claude/miko.epic）、エンジニア上流工程関与の開始</p>
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">Anthropic Training 10名選定</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">進捗なし（廃瀬・西脇相談中）</td><td class="measure-next">選定・参加者確定</td></tr>
+<tr><td class="measure-name">「最強の仕様書を考える会」</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">4/21（月）開催予定。PdM×Eng×QA×デザイナー横断で仕様書フォーマット検討</td><td class="measure-next">開催・運用化</td></tr>
+<tr><td class="measure-name">PM AI（Slackボット）試作</td><td></td><td class="measure-progress">5/6定例でバックログ不足問題が再提起。PM AIによる自動生成の必要性を再確認。伊尾木GW明け着手予定。</td><td class="measure-next">GW明けにPM AI（Slackボット）試作着手（伊尾木）</td></tr>
+<tr><td class="measure-name">PdM版Miko試作</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">試作完了（伊尾木・山田）・本格運用へのプロセス標準化中</td><td class="measure-next">5月本格試行</td></tr>
+<tr><td class="measure-name">サーバーエンジニアのPdM化</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">5/6定例で真柴への伴走体制整備中を確認。GW明けにPJM増加プロジェクト再始動予定（澤田）。</td><td class="measure-next">GW明けにPJM増加プロジェクト再始動（澤田）・真柴への残タスク完了サポート（山田・澤田）</td></tr>
+<tr><td class="measure-name">Claude Code 全社導入</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">利用ルール起草完了・4/13経営会議承認・全社理解度テスト4月末義務化</td><td class="measure-next">5/12 アカウント統合</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O4-KR3</span> ユーザー投稿監視の自動化により監視にかかる人的工数を90%削減（教材レビュー/画像チェック含む）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">ユーザー投稿監視自動化</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">GPKa「定常業務棚卸し」配下で着手予定。監視業務90%削減</td><td class="measure-next">業務棚卸し・自動化MVP</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O4-KR4</span> SaaS解約・内製化により2026年9月までに500万円コスト削減（FY2026年間で3,000万円達成）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">競合プレスリリース監視bot</td><td><span class="status-badge ">✅ 完了</span></td><td class="measure-progress">5/5〜5/6も競合プレスリリース監視botが「新着なし」で正常稼働継続。GW後半の安定稼働を確認。</td><td class="measure-next">miko.keieiリポ PR#26のレビュー・マージ対応（各本部長・関係者）</td></tr>
+<tr><td class="measure-name">AI経営基盤PJ</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">5/3 PR#26で会社概要・用語集をmiko.keieiに追加。GW期間中も競合監視botが安定稼働し学研等の新着プレスリリースを自動配信。</td><td class="measure-next">PR#26のレビュー・マージ。用語集の認識違い・追記事項をPRコメントで収集</td></tr>
+<tr><td class="measure-name">press_watch リポ統合</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">リポ作成済。studyplus org → studyplus-management へ</td><td class="measure-next">統合実行</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O4-KR5</span> TBD：事業部の業務効率化を支援（AIエージェント等による自動化・効率化）し、営業職の業務時間20%削減・デジマ職30%削減に貢献</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">営業録音PJ</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">別PJとして整理（4/23）。営業職業務効率化の録音基盤</td><td class="measure-next">業務棚卸し・AIエージェント検討</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <h2>3. KR共通論点</h2>
@@ -352,13 +389,22 @@
 </ul>
 </div>
 
+<h2>📋 前提情報</h2>
+<dl class="meta-bar">
+  <div><dt>全社OKR連動</dt><dd>全社O3 (Weight 20%)</dd></div>
+  <div><dt>主要責任者</dt><dd><strong>主要責任者</strong>: 島田豊（KR1-3 主担当）/ 大石弘一郎（KR4-5 主担当）/ 澤田 / 伊尾木 / 菅原健人 / 中島花絵</dd></div>
+  <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
+  <div><dt>関連定例</dt><dd><strong>関連定例</strong>: AI駆動開発PJ定例（週次）/ AI経営基盤PJ定例 / 「最強の仕様書を考える会」/ 4/14 AI経営基盤MTG</dd></div>
+  <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA">#prod_pjt_ai駆動開発</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E7%B5%8C%E5%96%B6%E5%9F%BA%E7%9B%A4">#prod_pjt_ai経営基盤</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%85%A8%E7%A4%BE%E6%A5%AD%E5%8B%99%E5%8A%B9%E7%8E%87%E5%8C%96">#prod_pjt_全社業務効率化</a></dd></div>
+</dl>
+
 <footer>
   <ul>
     <li><a href="https://www.notion.so/3525fd6b740381c78feaee9a79cd3de2">📘 Notion で詳細を見る</a></li>
     <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
   </ul>
   <p class="credit">
-    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:43 (JST)<br>
     Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
   </p>
 </footer>

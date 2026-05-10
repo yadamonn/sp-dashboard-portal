@@ -99,12 +99,12 @@
   .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
   .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
   .h-tag {
-    display: inline-block; font-size: 0.7rem; font-weight: 700;
-    padding: 0.15rem 0.5rem; border-radius: 4px;
-    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+    display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.02em;
+    padding: 0.1rem 0.45rem; border-radius: 3px;
+    background: var(--gray-3); color: var(--gray-11); margin-bottom: 0.45rem;
   }
-  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
-  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-title { font-size: 1.02rem; font-weight: 600; margin: 0 0 0.5rem; color: var(--gray-12); line-height: 1.5; }
+  .h-text { font-size: 0.92rem; color: var(--gray-12); margin: 0; line-height: 1.7; }
   .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
   .h-text a:hover { text-decoration: underline; }
 
@@ -151,6 +151,13 @@
   .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
   .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
   .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+  .kr-q1-target {
+    font-size: 0.85rem; color: var(--gray-12); margin: 0.5rem 0 0;
+    padding: 0.55rem 0.85rem; background: var(--gray-2); border-radius: 6px;
+    border-left: 2px solid var(--o-current);
+  }
+  .kr-q1-target strong { color: var(--gray-12); margin-right: 0.3rem; }
+  .kr-q1 { font-size: 0.83rem; color: var(--gray-11); }
 
   /* Discussion / Resources */
   .section-block {
@@ -194,14 +201,7 @@
   <span class="o-pill">O1</span>
   <h1>進路意思決定アクション日常化・Ads事業ボトルネック解消</h1>
   <div class="o-objective">Studyplus上で進路意思決定アクションが日常化し、進路選びのプラットフォームとしてAds事業の成長ボトルネックが構造的に解消されている状態</div>
-  <dl class="meta-bar">
-    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
-    <div><dt>全社OKR連動</dt><dd>全社O1 主力大学広告事業部のYoY30%成長 (Weight 30%)</dd></div>
-    <div><dt>主要責任者</dt><dd>プロダクト全体責任者: 島田豊（PdM）<br>プロジェクト責任者: 辛島訓至<br>開発側（エンジニアサイド）責任者: 五十嵐勇人</dd></div>
-    <div><dt>事業側カウンターパート</dt><dd>Ads事業本部: 田中隆之（本部長）、西脇友紀、落合祐人<br>大学広告事業部 (PMF/値上げ・GAM内製化主管): 安倍幸介<br>総合広告事業: 倉林将文（責任者）</dd></div>
-    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: <a href="https://www.notion.so/3275fd6b740380efb9b8ea1722c468da">SP進学マッチングHub</a> / <a href="https://www.notion.so/3115fd6b7403809587e9e01040f3fef7">進学マッチング定例</a> / Adsプロダクト戦略会議（週次）/ SP受験情報メディア将来像検討会</dd></div>
-    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">#prod_pjt_進学マッチング</a> / <a href="https://studyplus.slack.com/app_redirect?channel=pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0_ai%E9%80%B2%E8%B7%AF%E7%9B%B8%E8%AB%87">#pjt_進学マッチング_ai進路相談</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%A1%BE%E4%BA%88%E5%82%99%E6%A0%A1%E9%9B%86%E5%AE%A2%E6%94%AF%E6%8F%B4">#prod_pjt_塾予備校集客支援</a></dd></div>
-  </dl>
+  <p style="font-size:0.82rem; color:var(--gray-9); margin:0.5rem 0 0;">最終更新: 2026-05-07</p>
 </header>
 
 <h2>🔔 今週のハイライト</h2>
@@ -242,31 +242,74 @@
 
 <h2>1. Key Results 一覧</h2>
 <table class="kr-table">
-<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<thead><tr><th>KR</th><th>年間目標</th><th>1Q目標</th><th>ステータス</th><th>責任者</th></tr></thead>
 <tbody>
-<tr><td><span class="kr-id">O1-KR1</span></td><td>3Q終了時までに高3生「平均志望校登録数」4.6校（FY2025：2.9校）（＝志望校登録数YoY150％）</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
-<tr><td><span class="kr-id">O1-KR2</span></td><td>記事タイアップPVにおけるDR比率70%以下を達成</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
-<tr><td><span class="kr-id">O1-KR3</span></td><td>進路検討アクションが2倍に増加（大学情報閲覧/イベント情報閲覧/記事閲覧）&amp; NPS「学習に役立つ情報を得られる」+15pt改善</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
-<tr><td><span class="kr-id">O1-KR4</span></td><td>塾予備校集客支援サービスの立ち上げを開発面で支援し、FY2026の売上1000万円達成をサポート</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+<tr><td><span class="kr-id">O1-KR1</span></td><td>3Q終了時までに高3生「平均志望校登録数」4.6校（FY2025：2.9校）（＝志望校登録数YoY150％）</td><td class="kr-q1">志望校区分機能を6月中にリリース</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+<tr><td><span class="kr-id">O1-KR2</span></td><td>記事タイアップPVにおけるDR比率70%以下を達成</td><td class="kr-q1">GAM内製化によってバナー誘導強化を支援</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+<tr><td><span class="kr-id">O1-KR3</span></td><td>進路検討アクションが2倍に増加（大学情報閲覧/イベント情報閲覧/記事閲覧）&amp; NPS「学習に役立つ情報を得られる」+15pt改善</td><td class="kr-q1">AI進路相談機能のリリース</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+<tr><td><span class="kr-id">O1-KR4</span></td><td>塾予備校集客支援サービスの立ち上げを開発面で支援し、FY2026の売上1000万円達成をサポート</td><td class="kr-q1"><span style="color:var(--gray-9);">—</span></td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
 </tbody>
 </table>
 
 <h2>2. KR別 進捗状況</h2>
 <div class="kr-detail">
   <h3><span class="kr-id">O1-KR1</span> 3Q終了時までに高3生「平均志望校登録数」4.6校（FY2025：2.9校）（＝志望校登録数YoY150％）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  <p class="kr-q1-target"><strong>1Q目標:</strong> 志望校区分機能を6月中にリリース</p>
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">大学イベント画像 入稿UI設計（3段階仕様）</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">辛島が4/29晶文社へ発注調整メール送付。画像調達フローを落合と合意、法務確認が必要と判明。</td><td class="measure-next">GW明け 辛島が辻村氏と法務確認フローを連携確定</td></tr>
+<tr><td class="measure-name">大学横断イベントAPI（PR#8448）</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">PR#8448 college_id追加対応含む、レビュー進行中（4/23〜）</td><td class="measure-next">レビュー継続・マージ</td></tr>
+<tr><td class="measure-name">入試情報 nendo データ整合性是正</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">不整合検出済（2025年一般入試が2026年卒業年度で登録）。本番影響なし、4月中対応</td><td class="measure-next">4月末 対応完了</td></tr>
+<tr><td class="measure-name">お知らせ機能 ナーチャリングPhase1（イベント主語）</td><td><span class="status-badge ">🟢 仕様確定</span></td><td class="measure-progress">GW中につき動きなし。5/7仕様書読み合わせに向けて準備完了状態を維持。</td><td class="measure-next">5/7 仕様書読み合わせ（辛島・五十嵐）</td></tr>
+<tr><td class="measure-name">志望校区分機能（受験予定校 / 受験検討校）</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">仕様書ドラフト完了（4/26）、エンジニアレビュー中。志望校フィルター初期条件はシンプル表現に確定（4/28 1on1）</td><td class="measure-next">5/7（GW明け）仕様書 読み合わせ</td></tr>
+<tr><td class="measure-name">カバレッジ試算（2.35→4.6校増分配分）</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">増分配分ロジック・フィジビリ検証MTG実施</td><td class="measure-next">5月中 結果レビュー</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O1-KR2</span> 記事タイアップPVにおけるDR比率70%以下を達成</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  <p class="kr-q1-target"><strong>1Q目標:</strong> GAM内製化によってバナー誘導強化を支援</p>
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">セグメント検索 外出し（ベリリウム→検索特化システム）</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">4/14 Ads戦略会議で着手確定、五十嵐 4/28帰任、GW明け 5/7〜着手</td><td class="measure-next">5/7 着手</td></tr>
+<tr><td class="measure-name">AI生成バナー方針策定・本運用移行</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">Claude Design / GPT 活用方針確定（西脇 4/23）。広告バナーへの展開も廣瀬が即利用推奨（4/24〜26）</td><td class="measure-next">GW明け 本運用移行</td></tr>
+<tr><td class="measure-name">タイアップ運用 BPR・運用改善（月70-80件キャパ補強）</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">業務委託+アルバイト3名体制 + AI生成バナー活用で5月末新オペ完成目標。プロダクト部は大石が支援</td><td class="measure-next">5月末 新オペレーション完成</td></tr>
+<tr><td class="measure-name">商品値上を10% 検討</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">検討段階・未決</td><td class="measure-next">安倍主管下で具体化</td></tr>
+<tr><td class="measure-name">FY2027 タイアップ:オーガニック=50:50 方針決定</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">4/22 SP受験情報メディア将来像検討会で議論。FY26末オーガニック比率30%目標を経て段階的移行を検討中、未決</td><td class="measure-next">5月以降 継続議論</td></tr>
+<tr><td class="measure-name">GAM内製化（外部代理店依存解消）</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">WANT枠・進捗なし。プロダクト部側は大石・菅原健人が連携待機</td><td class="measure-next">安倍主管下で具体化待ち</td></tr>
+<tr><td class="measure-name">フォローアップDR改善（Phase 1）</td><td><span class="status-badge ">🟢 仕様確定</span></td><td class="measure-progress">真柴・五十嵐・落合・和田谷がPhase 1着手。ユーザーID指定配信仕様を確定中。5月末リリース目標。</td><td class="measure-next">ユーザーID指定配信仕様確定後、実装着手（真柴主管・5月末リリース目標）</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O1-KR3</span> 進路検討アクションが2倍に増加（大学情報閲覧/イベント情報閲覧/記事閲覧）&amp; NPS「学習に役立つ情報を得られる」+15pt改善</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  <p class="kr-q1-target"><strong>1Q目標:</strong> AI進路相談機能のリリース</p>
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">コンテンツ戦略（中長期 Figma/FigJam）</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">未着手。サービスストーリー全体導線（AI進路相談↔志望校探索↔登録）の連結未整理</td><td class="measure-next">5月中 Figma/FigJam 作成</td></tr>
+<tr><td class="measure-name">AI進路相談機能（beta版）</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">GW中につき動きなし。5/7キックオフ予定を維持。</td><td class="measure-next">5/7以降 キックオフ・UI/UX仕様着手（辛島）</td></tr>
+<tr><td class="measure-name">マッチング指標 KPI 化・モニタリングダッシュボード</td><td><span class="status-badge ">⚪ 未着手</span></td><td class="measure-progress">beta版開発と並行で定義予定</td><td class="measure-next">beta版開発と並行で定義</td></tr>
+<tr><td class="measure-name">お知らせ機能 ナーチャリングPhase1（イベント主語）</td><td><span class="status-badge ">🟢 仕様確定</span></td><td class="measure-progress">GW中につき動きなし。5/7仕様書読み合わせに向けて準備完了状態を維持。</td><td class="measure-next">5/7 仕様書読み合わせ（辛島・五十嵐）</td></tr>
+<tr><td class="measure-name">「さがす」タブ アップデート</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">アップデートイメージをClaude Designで作成・チームへ共有（辛島 4/23）</td><td class="measure-next">仕様詳細化</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O1-KR4</span> 塾予備校集客支援サービスの立ち上げを開発面で支援し、FY2026の売上1000万円達成をサポート</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">運用体制再編（小寺氏離脱対応）</td><td><span class="status-badge ">🔴 ブロック</span></td><td class="measure-progress">5月末で小寺氏（業務委託）契約終了、運用フェーズの主担当不在に。引き継ぎ計画 要確定</td><td class="measure-next">引き継ぎ計画確定</td></tr>
+<tr><td class="measure-name">インタースティシャル広告（記事タイアップ→勉強記録後）</td><td><span class="status-badge ">✅ 完了</span></td><td class="measure-progress">5/2に安倍が各案件詳細PVを確認。4/30開始の広告導線により5〜6倍に伸長を確認。</td><td class="measure-next">効果測定継続・GA4計測問題の検証完了</td></tr>
+<tr><td class="measure-name">GA4 計測 event_id 問題解消</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">案件別の成果単価が出せず、事業判断に支障。Goto Kosuke がカスタムディメンション以外の計測方法を提案、検証継続（4/30）</td><td class="measure-next">検証完了・正式採用</td></tr>
+<tr><td class="measure-name">大手模試掲載拡大（駿台・河合塾）</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">駿台・河合塾より引き合いあり</td><td class="measure-next">商談・契約</td></tr>
+<tr><td class="measure-name">主要機能リリース（記事タイアップ/申込フォーム/模試・イベント送客/巡航バナー）</td><td><span class="status-badge ">✅ 完了</span></td><td class="measure-progress">記事タイアップ/申込フォーム/模試・イベント送客/巡航バナー リリース完了（4月）。臨海塾（巡航バナー）・河合塾（広告誘導GW前完了目標）契約済</td><td class="measure-next">モニタリング</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <h2>3. KR共通論点</h2>
@@ -351,13 +394,22 @@
 </ul>
 </div>
 
+<h2>📋 前提情報</h2>
+<dl class="meta-bar">
+  <div><dt>全社OKR連動</dt><dd>全社O1 主力大学広告事業部のYoY30%成長 (Weight 30%)</dd></div>
+  <div><dt>主要責任者</dt><dd>プロダクト全体責任者: 島田豊（PdM）<br>プロジェクト責任者: 辛島訓至<br>開発側（エンジニアサイド）責任者: 五十嵐勇人</dd></div>
+  <div><dt>事業側カウンターパート</dt><dd>Ads事業本部: 田中隆之（本部長）、西脇友紀、落合祐人<br>大学広告事業部 (PMF/値上げ・GAM内製化主管): 安倍幸介<br>総合広告事業: 倉林将文（責任者）</dd></div>
+  <div><dt>関連定例</dt><dd><strong>関連定例</strong>: <a href="https://www.notion.so/3275fd6b740380efb9b8ea1722c468da">SP進学マッチングHub</a> / <a href="https://www.notion.so/3115fd6b7403809587e9e01040f3fef7">進学マッチング定例</a> / Adsプロダクト戦略会議（週次）/ SP受験情報メディア将来像検討会</dd></div>
+  <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">#prod_pjt_進学マッチング</a> / <a href="https://studyplus.slack.com/app_redirect?channel=pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0_ai%E9%80%B2%E8%B7%AF%E7%9B%B8%E8%AB%87">#pjt_進学マッチング_ai進路相談</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%A1%BE%E4%BA%88%E5%82%99%E6%A0%A1%E9%9B%86%E5%AE%A2%E6%94%AF%E6%8F%B4">#prod_pjt_塾予備校集客支援</a></dd></div>
+</dl>
+
 <footer>
   <ul>
     <li><a href="https://www.notion.so/3525fd6b740381c8b844c0fe0bb18b8b">📘 Notion で詳細を見る</a></li>
     <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
   </ul>
   <p class="credit">
-    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:43 (JST)<br>
     Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
   </p>
 </footer>

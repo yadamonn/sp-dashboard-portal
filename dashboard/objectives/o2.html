@@ -99,12 +99,12 @@
   .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
   .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
   .h-tag {
-    display: inline-block; font-size: 0.7rem; font-weight: 700;
-    padding: 0.15rem 0.5rem; border-radius: 4px;
-    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+    display: inline-block; font-size: 0.68rem; font-weight: 500; letter-spacing: 0.02em;
+    padding: 0.1rem 0.45rem; border-radius: 3px;
+    background: var(--gray-3); color: var(--gray-11); margin-bottom: 0.45rem;
   }
-  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
-  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-title { font-size: 1.02rem; font-weight: 600; margin: 0 0 0.5rem; color: var(--gray-12); line-height: 1.5; }
+  .h-text { font-size: 0.92rem; color: var(--gray-12); margin: 0; line-height: 1.7; }
   .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
   .h-text a:hover { text-decoration: underline; }
 
@@ -151,6 +151,13 @@
   .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
   .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
   .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+  .kr-q1-target {
+    font-size: 0.85rem; color: var(--gray-12); margin: 0.5rem 0 0;
+    padding: 0.55rem 0.85rem; background: var(--gray-2); border-radius: 6px;
+    border-left: 2px solid var(--o-current);
+  }
+  .kr-q1-target strong { color: var(--gray-12); margin-right: 0.3rem; }
+  .kr-q1 { font-size: 0.83rem; color: var(--gray-11); }
 
   /* Discussion / Resources */
   .section-block {
@@ -194,14 +201,7 @@
   <span class="o-pill">O2</span>
   <h1>初期継続定着+アクティブユーザー成長</h1>
   <div class="o-objective">新規ユーザーの初期継続が定着（翌日継続率60%・7日継続率37%を達成）し、アクティブユーザー数がYoY120%成長している状態</div>
-  <dl class="meta-bar">
-    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
-    <div><dt>全社OKR連動</dt><dd>全社O4 (Weight 10%)</dd></div>
-    <div><dt>主要責任者</dt><dd><strong>主要責任者</strong>: 森井聡（KR1-5 主担当） / 羽鳥成（初期体験PM）/ 上村裕樹（デザイン連携）</dd></div>
-    <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
-    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: <a href="https://www.notion.so/5a85fd6b740382ddb39401219fc68239">SP学習習慣化Hub</a> / <a href="https://www.notion.so/2ff5fd6b740380f2b987f412fb65d1d7">学習習慣化定例</a> / 学習習慣化PJ週次定例 / 学習習慣化ミニ定例</dd></div>
-    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%AD%A6%E7%BF%92%E7%BF%92%E6%85%A3%E5%8C%96">#prod_pjt_学習習慣化</a></dd></div>
-  </dl>
+  <p style="font-size:0.82rem; color:var(--gray-9); margin:0.5rem 0 0;">最終更新: 2026-05-07</p>
 </header>
 
 <h2>🔔 今週のハイライト</h2>
@@ -242,36 +242,74 @@
 
 <h2>1. Key Results 一覧</h2>
 <table class="kr-table">
-<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<thead><tr><th>KR</th><th>年間目標</th><th>1Q目標</th><th>ステータス</th><th>責任者</th></tr></thead>
 <tbody>
-<tr><td><span class="kr-id">O2-KR1</span></td><td>全新規ユーザーの「フォローかつ学習記録率」初日20％、初週35％を達成（FY2025：初日13.3％、初週24.3％）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
-<tr><td><span class="kr-id">O2-KR2</span></td><td>全新規ユーザーの「初日教材登録率」53％を達成（FY2025：47.3％）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
-<tr><td><span class="kr-id">O2-KR3</span></td><td>全新規ユーザーの「初週平均利用日数」4.0日を達成（FY2025：3.4日）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
-<tr><td><span class="kr-id">O2-KR4</span></td><td>新規会員数の月次YoY120%を達成（3Q以降の月次平均で達成）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
-<tr><td><span class="kr-id">O2-KR5</span></td><td>NPS「勉強の習慣が身につく」+5pt改善</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR1</span></td><td>全新規ユーザーの「フォローかつ学習記録率」初日20％、初週35％を達成（FY2025：初日13.3％、初週24.3％）</td><td class="kr-q1">「本棚」「タイムライン」「レポート」初期画面改善のリリース</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR2</span></td><td>全新規ユーザーの「初日教材登録率」53％を達成（FY2025：47.3％）</td><td class="kr-q1">教材登録改善のリリース</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR3</span></td><td>全新規ユーザーの「初週平均利用日数」4.0日を達成（FY2025：3.4日）</td><td class="kr-q1"><span style="color:var(--gray-9);">—</span></td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR4</span></td><td>新規会員数の月次YoY120%を達成（3Q以降の月次平均で達成）</td><td class="kr-q1">ー</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR5</span></td><td>NPS「勉強の習慣が身につく」+5pt改善</td><td class="kr-q1"><span style="color:var(--gray-9);">—</span></td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
 </tbody>
 </table>
 
 <h2>2. KR別 進捗状況</h2>
 <div class="kr-detail">
   <h3><span class="kr-id">O2-KR1</span> 全新規ユーザーの「フォローかつ学習記録率」初日20％、初週35％を達成（FY2025：初日13.3％、初週24.3％）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  <p class="kr-q1-target"><strong>1Q目標:</strong> 「本棚」「タイムライン」「レポート」初期画面改善のリリース</p>
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">MT画面（Empty State改善）</td><td><span class="status-badge ">✅ 完了</span></td><td class="measure-progress">4/22-23実装完了、4/24リリース完了。4/28(月)リリース・BigQuery集計遅れで効果測定は来週以降</td><td class="measure-next">効果測定</td></tr>
+<tr><td class="measure-name">ToDoリスト・初めてガイド</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">5/3ビルド配布・森井フィードバック・修正版即日対応完了。FS共有待ち。</td><td class="measure-next">森井がToDoリストと合わせてFS共有。上村がアニメーション選定・クリア演出2パターン作成。</td></tr>
+<tr><td class="measure-name">初期体験（「初めの一歩」オンボーディング）</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">羽鳥成がガイド非表示後のサイドバー常設認知問題を5/3 Slackで改めて提起。未解決継続。</td><td class="measure-next">学習習慣化定例で羽鳥成提起の認知問題について方針合意。</td></tr>
+<tr><td class="measure-name">「初めてガイド」3方針確定（Lottie演出/プロフィール削除/カウントダウン廃止）</td><td><span class="status-badge ">🟢 仕様確定</span></td><td class="measure-progress">5/1定例で一括確定、上村がアニメ選定中</td><td class="measure-next">上村裕樹がLottie/Riveからアニメーションを選定</td></tr>
+<tr><td class="measure-name">ユーザー検索改善（フォローおすすめ表示）</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">基盤実装済、追加実装約1週間</td><td class="measure-next">主要施策の完了後にリソースを振り向けて追加実装</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O2-KR2</span> 全新規ユーザーの「初日教材登録率」53％を達成（FY2025：47.3％）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  <p class="kr-q1-target"><strong>1Q目標:</strong> 教材登録改善のリリース</p>
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">教材カテゴリ整理</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">上位1000件中781件カテゴリなし。デフォルトカテゴリ設定検討フェーズ</td><td class="measure-next">検討継続</td></tr>
+<tr><td class="measure-name">教材登録改善（バーコード読取等）</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">教材登録改善・教材カテゴリ整理ともに今週は新規動きなし。実装・議論継続中。</td><td class="measure-next">教材登録改善のPR分割・3要素統合実装を継続。Q3リリース目標で設計進行。</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O2-KR3</span> 全新規ユーザーの「初週平均利用日数」4.0日を達成（FY2025：3.4日）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">カレンダー修正クライアントリリース</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">修正4/15配信開始。日付跨ぎデータ不具合はマスタ更新後に調査</td><td class="measure-next">マスタ更新後にリリース</td></tr>
+<tr><td class="measure-name">大学・高校マスタ更新</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">大学マスター更新・高校マスター対応ともに前週からの継続作業中。今週の新規動きなし。</td><td class="measure-next">羽鳥成が大学マスターロジック修正を継続・5月中旬完了目標。</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O2-KR4</span> 新規会員数の月次YoY120%を達成（3Q以降の月次平均で達成）</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  <p class="kr-q1-target"><strong>1Q目標:</strong> ー</p>
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">中期離脱要因の特定</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">上村Devin活用で3年比較データ抽出（4/21-22）</td><td class="measure-next">Q3 着手・FY2027施策設計</td></tr>
+    </tbody>
+  </table>
 </div>
 <div class="kr-detail">
   <h3><span class="kr-id">O2-KR5</span> NPS「勉強の習慣が身につく」+5pt改善</h3>
-  <p class="empty">紐付く施策が登録されていません。</p>
+  
+  <table class="measure-table">
+    <thead><tr><th>施策</th><th>状態</th><th>進捗(最新)</th><th>次の一手</th></tr></thead>
+    <tbody>
+<tr><td class="measure-name">中期離脱要因の特定</td><td><span class="status-badge ">🟢 実装中</span></td><td class="measure-progress">上村Devin活用で3年比較データ抽出（4/21-22）</td><td class="measure-next">Q3 着手・FY2027施策設計</td></tr>
+<tr><td class="measure-name">FS/一般ユーザー画面出し分け構想</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">大規模仕組み（森井提案）、4/30 1on1で浮上</td><td class="measure-next">誤認・規制リスクを収集して仕様設計を進める</td></tr>
+<tr><td class="measure-name">NPS改修（ユーザーID取得仕組み）</td><td><span class="status-badge ">🟡 議論中</span></td><td class="measure-progress">ユーザーIDを取得できる仕組みに改修予定</td><td class="measure-next">FS・一般ユーザー画面出し分け構想と一体で仕様検討</td></tr>
+    </tbody>
+  </table>
 </div>
 
 <h2>3. KR共通論点</h2>
@@ -332,13 +370,22 @@
 </ul>
 </div>
 
+<h2>📋 前提情報</h2>
+<dl class="meta-bar">
+  <div><dt>全社OKR連動</dt><dd>全社O4 (Weight 10%)</dd></div>
+  <div><dt>主要責任者</dt><dd><strong>主要責任者</strong>: 森井聡（KR1-5 主担当） / 羽鳥成（初期体験PM）/ 上村裕樹（デザイン連携）</dd></div>
+  <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
+  <div><dt>関連定例</dt><dd><strong>関連定例</strong>: <a href="https://www.notion.so/5a85fd6b740382ddb39401219fc68239">SP学習習慣化Hub</a> / <a href="https://www.notion.so/2ff5fd6b740380f2b987f412fb65d1d7">学習習慣化定例</a> / 学習習慣化PJ週次定例 / 学習習慣化ミニ定例</dd></div>
+  <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%AD%A6%E7%BF%92%E7%BF%92%E6%85%A3%E5%8C%96">#prod_pjt_学習習慣化</a></dd></div>
+</dl>
+
 <footer>
   <ul>
     <li><a href="https://www.notion.so/3525fd6b7403814b8cdcd2d00c778209">📘 Notion で詳細を見る</a></li>
     <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
   </ul>
   <p class="credit">
-    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:43 (JST)<br>
     Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
   </p>
 </footer>

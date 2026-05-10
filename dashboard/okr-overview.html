@@ -9,7 +9,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Radix gray scale (neutral) */
     --gray-1: #fcfcfd;
     --gray-2: #f9f9fb;
     --gray-3: #f0f0f3;
@@ -20,7 +19,6 @@
     --gray-11: #60646c;
     --gray-12: #1c2024;
 
-    /* Primary (Studyplus blue, used sparingly per 60-30-10) */
     --blue-1: #fbfdff;
     --blue-3: #edf6ff;
     --blue-6: #b7d9f8;
@@ -28,17 +26,16 @@
     --blue-10: #0588f0;
     --blue-11: #0d74ce;
 
-    /* Semantic colors for 5 Objectives */
-    --o1: #e5484d;       /* red-9 */
-    --o1-soft: #ffe5e5;  /* red-3 */
-    --o2: #0090ff;       /* blue-9 */
-    --o2-soft: #edf6ff;  /* blue-3 */
-    --o3: #30a46c;       /* green-9 */
-    --o3-soft: #e6f6ec;  /* green-3 */
-    --o4: #6e56cf;       /* violet-9 */
-    --o4-soft: #f2eefb;  /* violet-3 */
-    --o5: #ffb224;       /* amber-9 */
-    --o5-soft: #fff4d5;  /* amber-3 */
+    --o1: #e5484d;
+    --o1-soft: #ffe5e5;
+    --o2: #0090ff;
+    --o2-soft: #edf6ff;
+    --o3: #30a46c;
+    --o3-soft: #e6f6ec;
+    --o4: #6e56cf;
+    --o4-soft: #f2eefb;
+    --o5: #ffb224;
+    --o5-soft: #fff4d5;
   }
 
   * { box-sizing: border-box; }
@@ -51,90 +48,37 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 3rem 2rem 5rem;
-  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 3rem 2rem 5rem; }
 
-  /* Header */
-  header {
-    margin-bottom: 3rem;
-  }
-  h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    margin: 0 0 .5rem;
-    color: var(--gray-12);
-  }
-  .subtitle {
-    color: var(--gray-11);
-    font-size: 0.95rem;
-    margin: 0 0 1.5rem;
-  }
+  header { margin-bottom: 3rem; }
+  h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; color: var(--gray-12); }
+  .subtitle { color: var(--gray-11); font-size: 0.95rem; margin: 0 0 1.5rem; }
   .meta-bar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem 2rem;
-    padding: 1rem 1.5rem;
-    background: #fff;
-    border: 1px solid var(--gray-4);
-    border-radius: 12px;
-    font-size: 0.875rem;
+    display: flex; flex-wrap: wrap; gap: 1rem 2rem;
+    padding: 1rem 1.5rem; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 12px; font-size: 0.875rem;
   }
-  .meta-bar dt {
-    display: inline;
-    color: var(--gray-11);
-    font-weight: 500;
-    margin-right: 0.5rem;
-  }
-  .meta-bar dd {
-    display: inline;
-    margin: 0;
-    color: var(--gray-12);
-    font-weight: 500;
-  }
+  .meta-bar dt { display: inline; color: var(--gray-11); font-weight: 500; margin-right: 0.5rem; }
+  .meta-bar dd { display: inline; margin: 0; color: var(--gray-12); font-weight: 500; }
   .meta-item { display: inline-flex; align-items: baseline; gap: 0.4rem; }
 
-  /* Section heading */
   h2 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 3rem 0 1.25rem;
-    color: var(--gray-12);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-size: 1.25rem; font-weight: 600; letter-spacing: -0.01em;
+    margin: 3rem 0 1.25rem; color: var(--gray-12);
+    display: flex; align-items: center; gap: 0.5rem;
   }
-  h2 .count {
-    font-size: 0.85rem;
-    color: var(--gray-11);
-    font-weight: 500;
-  }
+  h2 .count { font-size: 0.85rem; color: var(--gray-11); font-weight: 500; }
 
-  /* 5 Objective grid */
-  .o-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-  }
-  @media (max-width: 1024px) {
-    .o-grid { grid-template-columns: repeat(2, 1fr); }
-  }
+  .o-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; }
+  @media (max-width: 1024px) { .o-grid { grid-template-columns: repeat(2, 1fr); } }
+
   .o-card {
-    background: #fff;
-    border: 1px solid var(--gray-4);
-    border-left: 4px solid var(--gray-7);
-    border-radius: 12px;
+    background: #fff; border: 1px solid var(--gray-4);
+    border-left: 4px solid var(--gray-7); border-radius: 12px;
     padding: 1.25rem 1.25rem 1.5rem;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .o-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  }
+  .o-card:hover { transform: translateY(-2px); box-shadow: 0 4px 16px rgba(0,0,0,0.06); }
   .o-card.o1 { border-left-color: var(--o1); }
   .o-card.o2 { border-left-color: var(--o2); }
   .o-card.o3 { border-left-color: var(--o3); }
@@ -142,13 +86,8 @@
   .o-card.o5 { border-left-color: var(--o5); }
 
   .o-label {
-    display: inline-block;
-    font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    padding: 0.2rem 0.6rem;
-    border-radius: 999px;
-    margin-bottom: 0.6rem;
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem; border-radius: 999px; margin-bottom: 0.6rem;
   }
   .o-label.o1 { background: var(--o1-soft); color: var(--o1); }
   .o-label.o2 { background: var(--o2-soft); color: var(--o2); }
@@ -156,58 +95,25 @@
   .o-label.o4 { background: var(--o4-soft); color: var(--o4); }
   .o-label.o5 { background: var(--o5-soft); color: var(--o5); }
 
-  .o-card h3 {
-    font-size: 0.95rem;
-    font-weight: 600;
-    line-height: 1.5;
-    margin: 0 0 0.6rem;
-    color: var(--gray-12);
-  }
-  .o-card .kr-count {
-    font-size: 0.8rem;
-    color: var(--gray-11);
-    margin: 0 0 1rem;
-  }
-  .o-card .o-link {
-    font-size: 0.85rem;
-    color: var(--blue-11);
-    text-decoration: none;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-  }
+  .o-card h3 { font-size: 0.95rem; font-weight: 600; line-height: 1.5; margin: 0 0 0.6rem; color: var(--gray-12); }
+  .o-card .kr-count { font-size: 0.8rem; color: var(--gray-11); margin: 0 0 1rem; }
+  .o-card .o-link { font-size: 0.85rem; color: var(--blue-11); text-decoration: none; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 0.25rem; }
   .o-card .o-link:hover { text-decoration: underline; }
 
-  /* Highlights list */
-  .highlights {
-    display: grid;
-    gap: 0.75rem;
-  }
+  .highlights { display: grid; gap: 0.75rem; }
   .h-item {
-    background: #fff;
-    border: 1px solid var(--gray-4);
-    border-radius: 12px;
-    padding: 1.25rem 1.5rem;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1rem;
-    align-items: start;
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem; display: grid; grid-template-columns: auto 1fr;
+    gap: 1rem; align-items: start;
     transition: border-color 0.15s ease;
   }
   .h-item:hover { border-color: var(--gray-6); }
 
   .rank {
-    flex-shrink: 0;
-    width: 2.25rem;
-    height: 2.25rem;
-    display: grid;
-    place-items: center;
-    border-radius: 999px;
-    font-weight: 700;
-    font-size: 0.875rem;
-    color: var(--gray-11);
-    background: var(--gray-3);
+    flex-shrink: 0; width: 2.25rem; height: 2.25rem;
+    display: grid; place-items: center; border-radius: 999px;
+    font-weight: 700; font-size: 0.875rem; color: var(--gray-11); background: var(--gray-3);
   }
   .rank.medal-gold { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #fff; font-size: 1.1rem; }
   .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1.1rem; }
@@ -215,54 +121,27 @@
 
   .h-body { min-width: 0; }
   .h-tag {
-    display: inline-block;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    padding: 0.15rem 0.55rem;
-    border-radius: 4px;
-    margin-bottom: 0.4rem;
+    display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em;
+    padding: 0.15rem 0.55rem; border-radius: 4px; margin-bottom: 0.4rem;
   }
   .h-tag.o1 { background: var(--o1-soft); color: var(--o1); }
   .h-tag.o2 { background: var(--o2-soft); color: var(--o2); }
   .h-tag.o3 { background: var(--o3-soft); color: var(--o3); }
   .h-tag.o4 { background: var(--o4-soft); color: var(--o4); }
   .h-tag.o5 { background: var(--o5-soft); color: var(--o5); }
-  .h-title {
-    font-size: 1rem;
-    font-weight: 600;
-    margin: 0 0 0.5rem;
-    color: var(--gray-12);
-  }
-  .h-text {
-    font-size: 0.9rem;
-    color: var(--gray-11);
-    margin: 0;
-    line-height: 1.7;
-  }
-  .h-text a {
-    color: var(--blue-11);
-    text-decoration: none;
-    font-weight: 500;
-  }
+  .h-title { font-size: 1rem; font-weight: 600; margin: 0 0 0.5rem; color: var(--gray-12); }
+  .h-text { font-size: 0.9rem; color: var(--gray-11); margin: 0; line-height: 1.7; }
+  .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
   .h-text a:hover { text-decoration: underline; }
 
-  /* Footer */
   footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--gray-4);
-    font-size: 0.85rem;
-    color: var(--gray-11);
+    margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--gray-4);
+    font-size: 0.85rem; color: var(--gray-11);
   }
   footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; }
   footer a { color: var(--gray-11); text-decoration: none; }
   footer a:hover { color: var(--blue-11); text-decoration: underline; }
-  .credit {
-    margin-top: 1.5rem;
-    font-size: 0.75rem;
-    color: var(--gray-9);
-  }
+  .credit { margin-top: 1.5rem; font-size: 0.75rem; color: var(--gray-9); }
 
   @media (max-width: 640px) {
     .container { padding: 1.5rem 1rem 3rem; }
@@ -282,54 +161,47 @@
   <dl class="meta-bar">
     <div class="meta-item"><dt>最終更新</dt><dd>2026-05-07</dd></div>
     <div class="meta-item"><dt>運用</dt><dd>島田豊（取締役プロダクト部部長）</dd></div>
-    <div class="meta-item"><dt>更新頻度</dt><dd>週次（月曜 07:00 JST 自動）</dd></div>
+    <div class="meta-item"><dt>更新頻度</dt><dd>週次（月曜 07:30 JST 自動）</dd></div>
     <div class="meta-item"><dt>構造</dt><dd>5 Objective × 24 KR</dd></div>
   </dl>
 </header>
 
 <h2>Objectives</h2>
 <div class="o-grid">
-
   <article class="o-card o1">
     <span class="o-label o1">O1</span>
     <h3>進路意思決定アクション日常化・Ads事業ボトルネック解消</h3>
     <p class="kr-count">5 Key Results</p>
     <a class="o-link" href="https://www.notion.so/3525fd6b740381c8b844c0fe0bb18b8b">Notion で詳細 →</a>
   </article>
-
   <article class="o-card o2">
     <span class="o-label o2">O2</span>
     <h3>初期継続定着+アクティブユーザー成長</h3>
     <p class="kr-count">5 Key Results</p>
     <a class="o-link" href="https://www.notion.so/3525fd6b7403814b8cdcd2d00c778209">Notion で詳細 →</a>
   </article>
-
   <article class="o-card o3">
     <span class="o-label o3">O3</span>
     <h3>FS本部の非連続成長・マルチプロダクト連携</h3>
     <p class="kr-count">5 Key Results</p>
     <a class="o-link" href="https://www.notion.so/3525fd6b740381cc98c8d78e3d8b0a6c">Notion で詳細 →</a>
   </article>
-
   <article class="o-card o4">
     <span class="o-label o4">O4</span>
     <h3>AI駆動開発+全社業務自動化</h3>
     <p class="kr-count">4 Key Results</p>
     <a class="o-link" href="https://www.notion.so/3525fd6b740381c78feaee9a79cd3de2">Notion で詳細 →</a>
   </article>
-
   <article class="o-card o5">
     <span class="o-label o5">O5</span>
     <h3>情報セキュリティ・デザイン体系・保守基盤</h3>
     <p class="kr-count">5 Key Results</p>
     <a class="o-link" href="https://www.notion.so/3525fd6b740381baab56feea9cd9bce4">Notion で詳細 →</a>
   </article>
-
 </div>
 
 <h2>🏆 今週のハイライト <span class="count">2026-05-07 更新・10件</span></h2>
 <div class="highlights">
-
   <article class="h-item">
     <div class="rank medal-gold">🥇</div>
     <div class="h-body">
@@ -338,7 +210,6 @@
       <p class="h-text"><a href="https://docs.google.com/document/d/1GC3uehvIhB5XQdPGHir4D12MwGi2COxuJlgz15CDth4/edit">4/28 Notee MTG</a>で島田がPdM代理（プロダクト企画範囲限定）を正式引き受け確定。花田育休は5/7開始、5/8 Notee説明会で正式引き継ぎを実施予定。豊川が教材制作オペ・ツール運用を引き継ぎ開始し、NoteeタスクはGitLabへ一元化・Notion旧タスクはアーカイブ化する方針を合意済み。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank medal-silver">🥈</div>
     <div class="h-body">
@@ -347,7 +218,6 @@
       <p class="h-text"><a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%A1%BE%E4%BA%88%E5%82%99%E6%A0%A1%E9%9B%86%E5%AE%A2%E6%94%AF%E6%8F%B4">#prod_pjt_塾予備校集客支援</a>にて5/2に安倍が各案件数値を更新し、4/30開始のインタースティシャル広告導線により詳細ページのPVが5〜6倍に伸長していることを確認。五十嵐も遷移の正常稼働を確認しており、引き続き効果測定を継続中。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank medal-bronze">🥉</div>
     <div class="h-body">
@@ -356,7 +226,6 @@
       <p class="h-text">岸本浩一智が5/3にビルドを配布し、森井聡が口頭フィードバック後に概ね承認、修正版ビルド対応も即日完了。<a href="https://docs.google.com/document/d/1XLqqBpEDH0yl6iNotdbza9VXgMbdYXk44ZmuhHKlDmk/edit">5/1 学習習慣化PJ定例</a>で確定した3方針（Lottie 2段階アニメーション・プロフィールタスク削除・カウントダウン廃止+カレンダー統合）に基づくデザインが固まり、森井がToDoリストと合わせてFS共有予定。上村裕樹がLottie/Riveからアニメーション選定中、安部翔太による自作も選択肢として残っている。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank">4</div>
     <div class="h-body">
@@ -365,7 +234,6 @@
       <p class="h-text"><a href="https://docs.google.com/document/d/1JKNOxXXD5ijbcM60Db_L7wwP1W6LDDl-bB35QdIPyVw/edit">4/30 Notee MTG</a>で澤田製・教材制作効率化ツールのデモを実施し、PDF対応・目次情報取得・正式名称と短縮名称の両表示など主要機能の実装状況を確認。APIキー管理・アクセス制御のセキュリティ方針と外部委託見据えたマニュアル作成方針を確定。5/7以降アルバイトが英語教材の試験制作を開始予定。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank">5</div>
     <div class="h-body">
@@ -374,7 +242,6 @@
       <p class="h-text">5/2 #fs_学習コーチング事業にて大和塾の新規法人登録が完了し、ContractS上で契約処理済み。6月15日週に法人トライアル開始（見込み5名）が確定し、担当CSは内藤。次回以降の法人については、CS側がGoogleドライブで資料共有・契約申請フォームをメール共有する運用フローを中山が確認・合意。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank">6</div>
     <div class="h-body">
@@ -383,7 +250,6 @@
       <p class="h-text"><a href="https://docs.google.com/document/d/1ONg789ETO4rO1_UPHA_VnGBIWNQEzWf7B12BvKWeRhY/edit">5/6 AI駆動開発PJ定例</a>にてバグ修正PRが全体の約23〜25%を占める実態を再確認し、テストコード行数の減少傾向（アプリコードは増加）が深掘りされた。伊尾木から「価値のないテストは削除している」との補足があり、リポジトリ間での差異の可能性も示唆。次のアクションとしてテストカバレッジ調査を澤田が担当することになった。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank">7</div>
     <div class="h-body">
@@ -392,7 +258,6 @@
       <p class="h-text"><a href="https://docs.google.com/document/d/1ONg789ETO4rO1_UPHA_VnGBIWNQEzWf7B12BvKWeRhY/edit">5/6 AI駆動開発PJ定例</a>にて、五十嵐・辛島の伴走が順調に完了した実績を踏まえ、次のメンバーである真柴への伴走体制（山田・澤田）が整備中であることを確認した。真柴の残タスクは機能実装が中心で、次フェーズ（羽鳥のPJ）でのフォローも視野に入れている。GW明けのPJM増加プロジェクト再始動を澤田が目標として設定。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank">8</div>
     <div class="h-body">
@@ -401,7 +266,6 @@
       <p class="h-text"><a href="https://docs.google.com/document/d/1ONg789ETO4rO1_UPHA_VnGBIWNQEzWf7B12BvKWeRhY/edit">5/6 AI駆動開発PJ定例</a>でスクラムのデイリーミーティング廃止案が議論されたが、「相談の場として機能しており、情報取得が難しいメンバーへの配慮も必要」との意見が多く、廃止せず徐々に改善していく方針を確認した。WebAppチームはデイリーの密度を高める方向で検討継続。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank">9</div>
     <div class="h-body">
@@ -410,7 +274,6 @@
       <p class="h-text">5/3 Slackで羽鳥成が「ガイドが時間・起動回数で非表示になった後、サイドバーにガイドが常設されていることをユーザーが知る手段がない」という懸念を継続提起。UI設計上の要検討論点として未解決のまま継続しており、<a href="https://www.notion.so/2ff5fd6b740380f2b987f412fb65d1d7">学習習慣化定例</a>での合意形成が必要な状態。今週はこの問いに対する明示的な回答・意思決定は確認されていない。</p>
     </div>
   </article>
-
   <article class="h-item">
     <div class="rank">10</div>
     <div class="h-body">
@@ -419,7 +282,6 @@
       <p class="h-text">GW期間中も五十嵐勇人が継続作業を実施。5/3の改善デーでは週間目標系エラー調査（Notion調査メモ）に着手。IAM権限最小化（silicon・argon PRレビュー）は継続中。菅原健人不在（〜5/10）によるSREエスカレーション停止・保守NGライン議論の一時停止は継続。</p>
     </div>
   </article>
-
 </div>
 
 <footer>
@@ -430,8 +292,8 @@
     <li><a href="https://www.notion.so/b1a2d11f1119414eb1932372783f07cc">Notion: 🗂 OKR施策データベース</a></li>
   </ul>
   <p class="credit">
-    Generated for sp-dashboard-portal (Cloudflare Pages + Access)<br>
-    Authentication: <code>@studyplus.jp</code> / 自動更新は今後 dashboard-update-bot から HTML 出力モードを追加して連携予定。
+    Generated by <code>dashboard_html_generator.py</code> on 2026-05-10 10:06 (JST)<br>
+    Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
   </p>
 </footer>
 

@@ -117,8 +117,11 @@
   /* 5 Objective grid */
   .o-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(5, 1fr);
     gap: 1rem;
+  }
+  @media (max-width: 1024px) {
+    .o-grid { grid-template-columns: repeat(2, 1fr); }
   }
   .o-card {
     background: #fff;
@@ -284,7 +287,7 @@
   </dl>
 </header>
 
-<h2>5 Objectives</h2>
+<h2>Objectives</h2>
 <div class="o-grid">
 
   <article class="o-card o1">

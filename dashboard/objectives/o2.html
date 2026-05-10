@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O2 初期継続定着+アクティブユーザー成長</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray-1: #fcfcfd;
+    --gray-2: #f9f9fb;
+    --gray-3: #f0f0f3;
+    --gray-4: #e8e8ec;
+    --gray-6: #d9d9e0;
+    --gray-7: #cdced6;
+    --gray-9: #8b8d98;
+    --gray-11: #60646c;
+    --gray-12: #1c2024;
+    --blue-3: #edf6ff;
+    --blue-9: #0090ff;
+    --blue-11: #0d74ce;
+    --o1: #e5484d;
+    --o1-soft: #ffe5e5;
+    --o2: #0090ff;
+    --o2-soft: #edf6ff;
+    --o3: #30a46c;
+    --o3-soft: #e6f6ec;
+    --o4: #6e56cf;
+    --o4-soft: #f2eefb;
+    --o5: #ffb224;
+    --o5-soft: #fff4d5;
+    --o-current: var(--o2);
+    --o-current-soft: var(--o2-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+    background: var(--gray-2);
+    color: var(--gray-12);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+  .breadcrumb { font-size: 0.875rem; color: var(--gray-11); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--blue-11); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  header { margin-bottom: 2.5rem; }
+  .o-pill {
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: var(--o-current-soft); color: var(--o-current);
+    margin-bottom: 0.75rem;
+  }
+  h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; color: var(--gray-12); line-height: 1.4; }
+  .o-objective {
+    margin: 1rem 0 1.5rem; padding: 1rem 1.25rem;
+    background: #fff; border-left: 3px solid var(--o-current);
+    border-radius: 6px; font-size: 0.95rem; color: var(--gray-12);
+  }
+  .meta-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem 1.5rem; padding: 1rem 1.5rem; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 12px; font-size: 0.875rem;
+  }
+  .meta-bar dt { font-weight: 600; color: var(--gray-11); margin-bottom: 0.2rem; font-size: 0.78rem; }
+  .meta-bar dd { margin: 0; color: var(--gray-12); }
+  .meta-bar dd a { color: var(--blue-11); text-decoration: none; }
+  .meta-bar dd a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em;
+    margin: 3rem 0 1rem; color: var(--gray-12);
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--o-current);
+  }
+  h3 {
+    font-size: 1rem; font-weight: 600;
+    margin: 1.5rem 0 0.75rem; color: var(--gray-12);
+  }
+
+  /* Highlights */
+  .highlights { display: grid; gap: 0.6rem; }
+  .h-item {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start;
+  }
+  .rank {
+    flex-shrink: 0; width: 1.85rem; height: 1.85rem;
+    display: grid; place-items: center; border-radius: 999px;
+    font-weight: 700; font-size: 0.8rem; color: var(--gray-11); background: var(--gray-3);
+  }
+  .rank.medal-gold { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #fff; font-size: 1rem; }
+  .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
+  .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
+  .h-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    padding: 0.15rem 0.5rem; border-radius: 4px;
+    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+  }
+  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
+  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
+  .h-text a:hover { text-decoration: underline; }
+
+  /* KR table */
+  .kr-table {
+    width: 100%; border-collapse: collapse; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 8px; overflow: hidden;
+    font-size: 0.875rem;
+  }
+  .kr-table th, .kr-table td {
+    text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--gray-4);
+    vertical-align: top;
+  }
+  .kr-table th { background: var(--gray-2); font-weight: 600; color: var(--gray-11); font-size: 0.78rem; letter-spacing: 0.02em; }
+  .kr-table tr:last-child td { border-bottom: none; }
+  .kr-id { font-weight: 700; color: var(--o-current); white-space: nowrap; }
+  .status-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    padding: 0.15rem 0.55rem; border-radius: 4px;
+    background: var(--gray-3); color: var(--gray-11);
+  }
+  .status-on-track { background: #e6f6ec; color: #218358; }
+  .status-at-risk { background: #fff4d5; color: #ad6800; }
+  .status-off-track { background: #ffe5e5; color: #c62a2f; }
+  .status-done { background: #edf6ff; color: #0d74ce; }
+  .status-not-started { background: var(--gray-3); color: var(--gray-9); }
+
+  /* KR detail (per-KR sections with measure tables) */
+  .kr-detail {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+  }
+  .kr-detail h3 { margin-top: 0; padding-top: 0; }
+  .kr-detail .empty { color: var(--gray-9); font-size: 0.85rem; font-style: italic; margin: 0.5rem 0 0; }
+  .measure-table {
+    width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem;
+  }
+  .measure-table th, .measure-table td {
+    text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--gray-3);
+    vertical-align: top;
+  }
+  .measure-table th { font-weight: 600; color: var(--gray-11); font-size: 0.75rem; }
+  .measure-table tr:last-child td { border-bottom: none; }
+  .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
+  .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
+  .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+
+  /* Discussion / Resources */
+  .section-block {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .section-block ul { margin: 0; padding-left: 1.4rem; }
+  .section-block li { margin: 0.4rem 0; font-size: 0.9rem; color: var(--gray-12); }
+  .section-block a { color: var(--blue-11); text-decoration: none; }
+  .section-block a:hover { text-decoration: underline; }
+  .section-block h4 { margin: 1.25rem 0 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--gray-12); }
+  .section-block h4:first-child { margin-top: 0; }
+
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-4);
+    font-size: 0.8rem; color: var(--gray-11);
+  }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+  footer a { color: var(--gray-11); text-decoration: none; }
+  footer a:hover { color: var(--blue-11); text-decoration: underline; }
+  .credit { margin-top: 1rem; font-size: 0.75rem; color: var(--gray-9); }
+
+  @media (max-width: 640px) {
+    .container { padding: 1.5rem 1rem 3rem; }
+    h1 { font-size: 1.4rem; }
+    .meta-bar { grid-template-columns: 1fr; }
+    .kr-table { font-size: 0.8rem; }
+    .kr-table th, .kr-table td { padding: 0.55rem; }
+    .measure-name { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<p class="breadcrumb">
+  <a href="../okr-overview.html">← OKR Overview</a>
+</p>
+
+<header>
+  <span class="o-pill">O2</span>
+  <h1>初期継続定着+アクティブユーザー成長</h1>
+  <div class="o-objective">新規ユーザーの初期継続が定着（翌日継続率60%・7日継続率37%を達成）し、アクティブユーザー数がYoY120%成長している状態</div>
+  <dl class="meta-bar">
+    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
+    <div><dt>全社OKR連動</dt><dd>全社O4 (Weight 10%)</dd></div>
+    <div><dt>主要責任者</dt><dd><strong>主要責任者</strong>: 森井聡（KR1-5 主担当） / 羽鳥成（初期体験PM）/ 上村裕樹（デザイン連携）</dd></div>
+    <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
+    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: <a href="https://www.notion.so/5a85fd6b740382ddb39401219fc68239">SP学習習慣化Hub</a> / <a href="https://www.notion.so/2ff5fd6b740380f2b987f412fb65d1d7">学習習慣化定例</a> / 学習習慣化PJ週次定例 / 学習習慣化ミニ定例</dd></div>
+    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%AD%A6%E7%BF%92%E7%BF%92%E6%85%A3%E5%8C%96">#prod_pjt_学習習慣化</a></dd></div>
+  </dl>
+</header>
+
+<h2>🔔 今週のハイライト</h2>
+<div class="highlights">
+  <article class="h-item">
+    <div class="rank medal-gold">🥇</div>
+    <div class="h-body">
+      <span class="h-tag">O2 KR1</span>
+      <h3 class="h-title">フォロー×学習記録率</h3>
+      <p class="h-text">岸本浩一智が5/3にビルドを配布し、森井聡が口頭フィードバック後に概ね承認、修正版ビルド対応も即日完了。<a href="https://docs.google.com/document/d/1XLqqBpEDH0yl6iNotdbza9VXgMbdYXk44ZmuhHKlDmk/edit">5/1 学習習慣化PJ定例</a>で確定した3方針（Lottie 2段階アニメーション・プロフィールタスク削除・カウントダウン廃止+カレンダー統合）に基づくデザインが固まり、森井がToDoリストと合わせてFS共有予定。上村裕樹がLottie/Riveからアニメーション選定中、安部翔太による自作も選択肢として残っている。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-silver">🥈</div>
+    <div class="h-body">
+      <span class="h-tag">O2 KR1</span>
+      <h3 class="h-title">フォロー×学習記録率</h3>
+      <p class="h-text">5/3 Slackで羽鳥成が「ガイドが時間・起動回数で非表示になった後、サイドバーにガイドが常設されていることをユーザーが知る手段がない」という懸念を継続提起。UI設計上の要検討論点として未解決のまま継続しており、<a href="https://www.notion.so/2ff5fd6b740380f2b987f412fb65d1d7">学習習慣化定例</a>での合意形成が必要な状態。今週はこの問いに対する明示的な回答・意思決定は確認されていない。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-bronze">🥉</div>
+    <div class="h-body">
+      <span class="h-tag">O2 KR3</span>
+      <h3 class="h-title">初週平均利用日数</h3>
+      <p class="h-text">大学マスター更新は5月中旬〜末完了見込み・リリース6月初旬〜中旬の優先度調整が継続中（<a href="https://docs.google.com/document/d/1W4xrGbad4aH3PBHxz6YUFYhZXz92WYJHXZuplQNoDC0/edit">4/28 学習習慣化PJ定例</a>確定済）。今週は新たな動きは確認されておらず、ロジック修正作業が継続中。高校マスター（石井健三）は前週ほぼ完了状態から進展なし。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">4</div>
+    <div class="h-body">
+      <span class="h-tag">O2 KR2</span>
+      <h3 class="h-title">初日教材登録率</h3>
+      <p class="h-text">今週は大きな進捗なし。PR分割・3要素統合の実装が継続中。教材カテゴリ整理（上位1000件中781件カテゴリなし・デフォルトカテゴリ設定検討）も議論段階のまま継続。Q3リリースに向けて設計作業が続いている。<a href="https://www.notion.so/b1a2d11f1119414eb1932372783f07cc">🗂 OKR施策データベース</a>上の状態に変化なし。</p>
+    </div>
+  </article>
+</div>
+
+<h2>1. Key Results 一覧</h2>
+<table class="kr-table">
+<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<tbody>
+<tr><td><span class="kr-id">O2-KR1</span></td><td>全新規ユーザーの「フォローかつ学習記録率」初日20％、初週35％を達成（FY2025：初日13.3％、初週24.3％）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR2</span></td><td>全新規ユーザーの「初日教材登録率」53％を達成（FY2025：47.3％）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR3</span></td><td>全新規ユーザーの「初週平均利用日数」4.0日を達成（FY2025：3.4日）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR4</span></td><td>新規会員数の月次YoY120%を達成（3Q以降の月次平均で達成）</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+<tr><td><span class="kr-id">O2-KR5</span></td><td>NPS「勉強の習慣が身につく」+5pt改善</td><td><span class="status-badge status-done">進行中</span></td><td>森井聡</td></tr>
+</tbody>
+</table>
+
+<h2>2. KR別 進捗状況</h2>
+<div class="kr-detail">
+  <h3><span class="kr-id">O2-KR1</span> 全新規ユーザーの「フォローかつ学習記録率」初日20％、初週35％を達成（FY2025：初日13.3％、初週24.3％）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O2-KR2</span> 全新規ユーザーの「初日教材登録率」53％を達成（FY2025：47.3％）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O2-KR3</span> 全新規ユーザーの「初週平均利用日数」4.0日を達成（FY2025：3.4日）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O2-KR4</span> 新規会員数の月次YoY120%を達成（3Q以降の月次平均で達成）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O2-KR5</span> NPS「勉強の習慣が身につく」+5pt改善</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+
+<h2>3. KR共通論点</h2>
+<div class="section-block">
+<h4>3.1 KR1: フォロー×学習記録率（初期画面改善） の共通論点</h4>
+<ul>
+<li>「ガイド非表示後のサイドバー常設認知」を新規ユーザーが気付ける構造への懸念（羽鳥成提起、5/1-5/3 Slack）</li>
+<li>ToDoリスト配置方針（App Bar vs ドロワー）：森井言語化→羽鳥レビュー→デザイン決定</li>
+<li>N=1分析の活用（学習要素 vs SNS要素の継続率貢献度）</li>
+</ul>
+<h4>3.2 KR2: 初日教材登録率（教材登録改善） の共通論点</h4>
+<ul>
+<li>教材データの正規化と自動カテゴリ分類</li>
+</ul>
+<h4>3.3 KR3: 初週平均利用日数 の共通論点</h4>
+<ul>
+<li>進学マッチング（O1）との連携</li>
+</ul>
+<h4>3.4 KR4: 新規会員数 YoY120%（3Q以降月次平均） の共通論点</h4>
+<ul>
+<li>中期離脱要因の特定とFY2027施策設計（モチベ／マッチング精度／達成感）</li>
+<li>「学び続けさせる」体験体系化（ソーシャル・蓄積・達成感）</li>
+</ul>
+<h4>3.5 KR5: NPS③「勉強の習慣が身につく」+5pt の共通論点</h4>
+<ul>
+<li>経営会議フィードバック（3/23）: 翌日継続率・初期オンボーディング・インアクティブ復帰施策</li>
+</ul>
+</div>
+
+<h2>4. 関連リソース</h2>
+<div class="section-block">
+<p><strong>戦略・資料（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>O2_学習継続定着/ — Drive戦略資料（学習習慣化PJ）</li>
+<li>経営・全社/中期計画/ — 中期計画</li>
+</ul>
+<p><strong>議事録（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>議事録/Division/ — 学習習慣化定例 / 学習習慣化ミニ定例 / Studyplusプロダクトプランニング / 学習PDCA定例</li>
+</ul>
+<p><strong>Notion DB（自動同期）</strong></p>
+<ul>
+<li>Notion/経営・全社/SPプロダクトミッション/</li>
+<li>Notion/O2_学習継続定着/ — SP機能重要度マスタ / SP課題・要望管理ボード / SPエピック管理ボード / SPストーリー管理ボード / モバイルアプリUI確認</li>
+<li>Notion/横断_リサーチVoC/ — インサイト/観察結果/リサーチデータ</li>
+</ul>
+<p><strong>Slackチャンネル</strong></p>
+<ul>
+<li><code>#prod_pjt_学習習慣化</code> / <code>#prod_planning</code> / <code>#prod_dev_calendar</code></li>
+<li><code>#sp_design_improvement</code> / <code>#prod_user_requests</code>（VoC）</li>
+</ul>
+<p><strong>外部リンク</strong></p>
+<ul>
+<li><a href="https://www.notion.so/5a85fd6b740382ddb39401219fc68239">SP学習習慣化Hub</a></li>
+<li><a href="https://www.notion.so/2ff5fd6b740380f2b987f412fb65d1d7">学習習慣化定例</a></li>
+<li><a href="https://www.notion.so/3445fd6b7403804188aeec2a83591e09">MT画面要件定義書</a></li>
+<li><a href="https://docs.google.com/spreadsheets/d/1qjpi_v8yPxdp4G4lMmpZT2z5zlVAtrA2zrAwGR9HknI">モニタリングシート</a></li>
+</ul>
+</div>
+
+<footer>
+  <ul>
+    <li><a href="https://www.notion.so/3525fd6b7403814b8cdcd2d00c778209">📘 Notion で詳細を見る</a></li>
+    <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
+  </ul>
+  <p class="credit">
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

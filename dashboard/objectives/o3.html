@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O3 FS本部の非連続成長・マルチプロダクト連携</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray-1: #fcfcfd;
+    --gray-2: #f9f9fb;
+    --gray-3: #f0f0f3;
+    --gray-4: #e8e8ec;
+    --gray-6: #d9d9e0;
+    --gray-7: #cdced6;
+    --gray-9: #8b8d98;
+    --gray-11: #60646c;
+    --gray-12: #1c2024;
+    --blue-3: #edf6ff;
+    --blue-9: #0090ff;
+    --blue-11: #0d74ce;
+    --o1: #e5484d;
+    --o1-soft: #ffe5e5;
+    --o2: #0090ff;
+    --o2-soft: #edf6ff;
+    --o3: #30a46c;
+    --o3-soft: #e6f6ec;
+    --o4: #6e56cf;
+    --o4-soft: #f2eefb;
+    --o5: #ffb224;
+    --o5-soft: #fff4d5;
+    --o-current: var(--o3);
+    --o-current-soft: var(--o3-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+    background: var(--gray-2);
+    color: var(--gray-12);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+  .breadcrumb { font-size: 0.875rem; color: var(--gray-11); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--blue-11); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  header { margin-bottom: 2.5rem; }
+  .o-pill {
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: var(--o-current-soft); color: var(--o-current);
+    margin-bottom: 0.75rem;
+  }
+  h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; color: var(--gray-12); line-height: 1.4; }
+  .o-objective {
+    margin: 1rem 0 1.5rem; padding: 1rem 1.25rem;
+    background: #fff; border-left: 3px solid var(--o-current);
+    border-radius: 6px; font-size: 0.95rem; color: var(--gray-12);
+  }
+  .meta-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem 1.5rem; padding: 1rem 1.5rem; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 12px; font-size: 0.875rem;
+  }
+  .meta-bar dt { font-weight: 600; color: var(--gray-11); margin-bottom: 0.2rem; font-size: 0.78rem; }
+  .meta-bar dd { margin: 0; color: var(--gray-12); }
+  .meta-bar dd a { color: var(--blue-11); text-decoration: none; }
+  .meta-bar dd a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em;
+    margin: 3rem 0 1rem; color: var(--gray-12);
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--o-current);
+  }
+  h3 {
+    font-size: 1rem; font-weight: 600;
+    margin: 1.5rem 0 0.75rem; color: var(--gray-12);
+  }
+
+  /* Highlights */
+  .highlights { display: grid; gap: 0.6rem; }
+  .h-item {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start;
+  }
+  .rank {
+    flex-shrink: 0; width: 1.85rem; height: 1.85rem;
+    display: grid; place-items: center; border-radius: 999px;
+    font-weight: 700; font-size: 0.8rem; color: var(--gray-11); background: var(--gray-3);
+  }
+  .rank.medal-gold { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #fff; font-size: 1rem; }
+  .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
+  .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
+  .h-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    padding: 0.15rem 0.5rem; border-radius: 4px;
+    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+  }
+  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
+  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
+  .h-text a:hover { text-decoration: underline; }
+
+  /* KR table */
+  .kr-table {
+    width: 100%; border-collapse: collapse; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 8px; overflow: hidden;
+    font-size: 0.875rem;
+  }
+  .kr-table th, .kr-table td {
+    text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--gray-4);
+    vertical-align: top;
+  }
+  .kr-table th { background: var(--gray-2); font-weight: 600; color: var(--gray-11); font-size: 0.78rem; letter-spacing: 0.02em; }
+  .kr-table tr:last-child td { border-bottom: none; }
+  .kr-id { font-weight: 700; color: var(--o-current); white-space: nowrap; }
+  .status-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    padding: 0.15rem 0.55rem; border-radius: 4px;
+    background: var(--gray-3); color: var(--gray-11);
+  }
+  .status-on-track { background: #e6f6ec; color: #218358; }
+  .status-at-risk { background: #fff4d5; color: #ad6800; }
+  .status-off-track { background: #ffe5e5; color: #c62a2f; }
+  .status-done { background: #edf6ff; color: #0d74ce; }
+  .status-not-started { background: var(--gray-3); color: var(--gray-9); }
+
+  /* KR detail (per-KR sections with measure tables) */
+  .kr-detail {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+  }
+  .kr-detail h3 { margin-top: 0; padding-top: 0; }
+  .kr-detail .empty { color: var(--gray-9); font-size: 0.85rem; font-style: italic; margin: 0.5rem 0 0; }
+  .measure-table {
+    width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem;
+  }
+  .measure-table th, .measure-table td {
+    text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--gray-3);
+    vertical-align: top;
+  }
+  .measure-table th { font-weight: 600; color: var(--gray-11); font-size: 0.75rem; }
+  .measure-table tr:last-child td { border-bottom: none; }
+  .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
+  .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
+  .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+
+  /* Discussion / Resources */
+  .section-block {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .section-block ul { margin: 0; padding-left: 1.4rem; }
+  .section-block li { margin: 0.4rem 0; font-size: 0.9rem; color: var(--gray-12); }
+  .section-block a { color: var(--blue-11); text-decoration: none; }
+  .section-block a:hover { text-decoration: underline; }
+  .section-block h4 { margin: 1.25rem 0 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--gray-12); }
+  .section-block h4:first-child { margin-top: 0; }
+
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-4);
+    font-size: 0.8rem; color: var(--gray-11);
+  }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+  footer a { color: var(--gray-11); text-decoration: none; }
+  footer a:hover { color: var(--blue-11); text-decoration: underline; }
+  .credit { margin-top: 1rem; font-size: 0.75rem; color: var(--gray-9); }
+
+  @media (max-width: 640px) {
+    .container { padding: 1.5rem 1rem 3rem; }
+    h1 { font-size: 1.4rem; }
+    .meta-bar { grid-template-columns: 1fr; }
+    .kr-table { font-size: 0.8rem; }
+    .kr-table th, .kr-table td { padding: 0.55rem; }
+    .measure-name { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<p class="breadcrumb">
+  <a href="../okr-overview.html">← OKR Overview</a>
+</p>
+
+<header>
+  <span class="o-pill">O3</span>
+  <h1>FS本部の非連続成長・マルチプロダクト連携</h1>
+  <div class="o-objective">FS本部の非連続成長を支えるマルチプロダクトによる自動蓄積・指導活用サイクルが基盤として機能している状態</div>
+  <dl class="meta-bar">
+    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
+    <div><dt>全社OKR連動</dt><dd>全社O2 (Weight 30%)</dd></div>
+    <div><dt>主要責任者</dt><dd>プロダクト全体責任者: 島田豊（PdM全体・<strong>Notee PdM代理 5月中旬〜7月中旬</strong>）<br>学習コーチング・AIアシスタント・下期テーマ責任者: 岸洋一郎<br>Notee 主担当: 花田拓馬（5月中旬〜7月中旬 育休）<br>開発側責任者: 隅山淳一朗（Notee）</dd></div>
+    <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
+    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: FSプロダクト戦略会議（隔週）/ 学習コーチング定例 / Notee MTG / AI質問システムMTG（30分・双方向コミュ用）/ Noteeプロダクト部キックオフMTG</dd></div>
+    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%AD%A6%E7%BF%92%E3%82%B3%E3%83%BC%E3%83%81%E3%83%B3%E3%82%B0">#prod_pjt_学習コーチング</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_notee">#prod_pjt_notee</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E8%B3%AA%E5%95%8F">#prod_pjt_ai質問</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E3%82%A2%E3%82%B7%E3%82%B9%E3%82%BF%E3%83%B3%E3%83%88">#prod_pjt_aiアシスタント</a></dd></div>
+  </dl>
+</header>
+
+<h2>🔔 今週のハイライト</h2>
+<div class="highlights">
+  <article class="h-item">
+    <div class="rank medal-gold">🥇</div>
+    <div class="h-body">
+      <span class="h-tag">O3 KR2</span>
+      <h3 class="h-title">Notee有償700ID運用基盤</h3>
+      <p class="h-text"><a href="https://docs.google.com/document/d/1GC3uehvIhB5XQdPGHir4D12MwGi2COxuJlgz15CDth4/edit">4/28 Notee MTG</a>で島田がPdM代理（プロダクト企画範囲限定）を正式引き受け確定。花田育休は5/7開始、5/8 Notee説明会で正式引き継ぎを実施予定。豊川が教材制作オペ・ツール運用を引き継ぎ開始し、NoteeタスクはGitLabへ一元化・Notion旧タスクはアーカイブ化する方針を合意済み。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-silver">🥈</div>
+    <div class="h-body">
+      <span class="h-tag">O3 KR2</span>
+      <h3 class="h-title">Notee有償700ID運用基盤</h3>
+      <p class="h-text"><a href="https://docs.google.com/document/d/1JKNOxXXD5ijbcM60Db_L7wwP1W6LDDl-bB35QdIPyVw/edit">4/30 Notee MTG</a>で澤田製・教材制作効率化ツールのデモを実施し、PDF対応・目次情報取得・正式名称と短縮名称の両表示など主要機能の実装状況を確認。APIキー管理・アクセス制御のセキュリティ方針と外部委託見据えたマニュアル作成方針を確定。5/7以降アルバイトが英語教材の試験制作を開始予定。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-bronze">🥉</div>
+    <div class="h-body">
+      <span class="h-tag">O3 KR1</span>
+      <h3 class="h-title">学習コーチング2,000ID運用基盤</h3>
+      <p class="h-text">5/2 #fs_学習コーチング事業にて大和塾の新規法人登録が完了し、ContractS上で契約処理済み。6月15日週に法人トライアル開始（見込み5名）が確定し、担当CSは内藤。次回以降の法人については、CS側がGoogleドライブで資料共有・契約申請フォームをメール共有する運用フローを中山が確認・合意。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">4</div>
+    <div class="h-body">
+      <span class="h-tag">O3 KR2</span>
+      <h3 class="h-title">Notee有償700ID運用基盤</h3>
+      <p class="h-text">5/3 #pjt_noteeにてパイオニア社からNEXTタッチペン設計検討着手の連絡を受け、金型費用（DS10モデルで400万円）が発生する前段階の事前設計検討は費用不要のため着手可能と確認。設計前に最終単価予想と設計試作費用の概算を取得し経営会議の稟議を通す方針を花田が確定。島田PdM代理への正式引き継ぎ前の判断として記録済み。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">5</div>
+    <div class="h-body">
+      <span class="h-tag">O3 KR3</span>
+      <h3 class="h-title">AIアシスタント先生7割活用</h3>
+      <p class="h-text">AIアシスタント（面談カルテ）は6月上旬リリース目標を継続。山田がcage環境にデザインをアップロード済み（4/24-26）で、GW明けにテスト開始予定。Gemini 2.5→後継モデル変更は義川が評価着手・5月末リリース目標で変動なし。今週（5/1〜5/7）は議事録・Slack上で新規の動きは確認されず。</p>
+    </div>
+  </article>
+</div>
+
+<h2>1. Key Results 一覧</h2>
+<table class="kr-table">
+<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<tbody>
+<tr><td><span class="kr-id">O3-KR1</span></td><td>学習コーチング：コーチングシステム自動化により2027年3月時点で有償2,000IDを運用可能</td><td><span class="status-badge status-done">進行中</span></td><td>岸洋一郎</td></tr>
+<tr><td><span class="kr-id">O3-KR2</span></td><td>Notee：NoteeチームとStudyplus／Studyplus for Schoolチームが連携して有償700ID運用基盤を整備</td><td><span class="status-badge status-done">進行中</span></td><td>花田拓馬</td></tr>
+<tr><td><span class="kr-id">O3-KR3</span></td><td>AIアシスタント: 学習データ×AI活用で面談品質の改善、対応すべき生徒の把握と適切な働きかけを支援。提供校舎の先生の7割が機能を活用</td><td><span class="status-badge status-done">進行中</span></td><td>岸洋一郎</td></tr>
+<tr><td><span class="kr-id">O3-KR4</span></td><td>2026年9月末までに下期開発テーマを事業部×プロダクト部の合意で確定し、3-4Qで開発（成績管理機能・カレンダー機能の再設計が有力）</td><td><span class="status-badge status-done">進行中</span></td><td>岸洋一郎</td></tr>
+</tbody>
+</table>
+
+<h2>2. KR別 進捗状況</h2>
+<div class="kr-detail">
+  <h3><span class="kr-id">O3-KR1</span> 学習コーチング：コーチングシステム自動化により2027年3月時点で有償2,000IDを運用可能</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O3-KR2</span> Notee：NoteeチームとStudyplus／Studyplus for Schoolチームが連携して有償700ID運用基盤を整備</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O3-KR3</span> AIアシスタント: 学習データ×AI活用で面談品質の改善、対応すべき生徒の把握と適切な働きかけを支援。提供校舎の先生の7割が機能を活用</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O3-KR4</span> 2026年9月末までに下期開発テーマを事業部×プロダクト部の合意で確定し、3-4Qで開発（成績管理機能・カレンダー機能の再設計が有力）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+
+<h2>3. KR共通論点</h2>
+<div class="section-block">
+<h4>3.1 KR1: 学習コーチング 2,000ID運用基盤 の共通論点</h4>
+<ul>
+<li>オペレーション自動化の急務（松田さん常時張り付き状態）</li>
+<li>コーチ行動品質管理（ルール周知・ペナルティ対処の標準化）</li>
+<li>ブランド化施策（難関大出身者採用が成功シグナル）</li>
+</ul>
+<h4>3.2 KR2: Notee 有償700ID運用基盤 の共通論点</h4>
+<ul>
+<li>教材対応のスケーラビリティ（現仕様では多様な教材対応不明）</li>
+<li>自動採点精度の課題（背景方眼紙、コンパス軌跡など誤認率高い）</li>
+<li>ハードウェアOS・キーボード入力制限（Wi-Fiパスワードに「!」含むと入力モード切替不可）</li>
+<li>教材利用期限の厳密さ（一度実装すると変更困難）</li>
+<li>教材制作アルバイトの納期コミット難易度・外注3社のリソース最適化（5/1 Slack）</li>
+<li>BtoB→BtoC展開タイミング（FY2027 700名達成前提、2028 BtoC EC販売開始）</li>
+</ul>
+<h4>3.3 KR3: AIアシスタント 提供校舎の先生7割活用 の共通論点</h4>
+<ul>
+<li>AI生成コストと価格設定のバランス（画像生成最大コスト、月額¥500での採算性）</li>
+<li>複数塾契約時の履歴表示ルール未確定</li>
+<li>対話モード実装の実現可能性（段階的解説+分岐対応のUI/UX設計コスト大）</li>
+<li>データ活用範囲（プライバシー・著作権）</li>
+<li>競合優位性維持（対話型は他社未実装）</li>
+</ul>
+<h4>3.4 KR4: 下期開発テーマ確定（2026-09末） の共通論点</h4>
+<ul>
+<li>下期テーマの工数配分・優先度</li>
+</ul>
+</div>
+
+<h2>4. 関連リソース</h2>
+<div class="section-block">
+<p><strong>戦略・資料（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>O3_FS_学習コーチング/ — Drive戦略資料（FS開発側）</li>
+<li>O3_Notee/ — Drive戦略資料（Notee）</li>
+<li>事業部_FS/ — 学習管理 / 学習コーチング / AI質問システム / Notee / AIアシスタント / 商談ログ</li>
+<li>Projects/Notee/ — PdM代理引き継ぎ資料一式</li>
+</ul>
+<p><strong>議事録（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>議事録/CrossFunctional/ — FSプロダクト戦略会議（隔週）/ FS戦略会議</li>
+<li>議事録/Division/ — 学習コーチング開発定例 / AI質問システムMTG</li>
+</ul>
+<p><strong>Notion DB（自動同期）</strong></p>
+<ul>
+<li>Notion/O3_FS_学習コーチング/ — 学コーPJT管理 / 課題・要望管理シート / FS_Sprints / FSエピック</li>
+<li>Notion/O3_FS_AIアシスタント/ — AIアシスタント機能仕様 / 画面仕様</li>
+<li>Notion/O3_Notee/ — Noteeデザインタスク管理</li>
+</ul>
+<p><strong>Slackチャンネル（事業部_FS/商談ログ/ への日次取り込み実装予定）</strong></p>
+<ul>
+<li>横断: <code>#fs</code> / <code>#fs-prod_feedback</code> / <code>#prod-fs_discussion</code></li>
+<li>学習コーチング: <code>#fs_学習コーチング事業</code> / <code>#prod_pjt_bpaas</code></li>
+<li>AI質問: <code>#fs_pjt_ai質問システム</code> / <code>#pjt_ai質問システム_all</code></li>
+<li>Notee: <code>#pjt_notee</code> / <code>#pjt_教材データ制作自動化</code></li>
+<li>顧客PJ（商談ログ）: <code>#fs_pjt_kawaijuku</code> / <code>#fs_pjt_zkai</code> / <code>#fs_pjt_信学会</code> / <code>#fs_pjt_eikoh</code></li>
+</ul>
+<p><strong>学習コーチング（KR1）</strong></p>
+<ul>
+<li><a href="https://www.notion.so/3445fd6b7403808b876eca0781b0fbb8">学習コーチング課題・要望管理シート</a></li>
+<li><a href="https://docs.google.com/document/d/1qRlloxVbn3vmgF_xF2cC8P6Uwg9aO1--gMPHjzqsdNE/">FS戦略会議 2026-04-13</a></li>
+</ul>
+<p><strong>Notee（KR2）</strong></p>
+<ul>
+<li><a href="https://www.figma.com/design/MhBgEPu3sDEJF9BR31T95L/Notee-design-v1?node-id=4214-51815">自動採点UI最新版 (Figma)</a></li>
+<li><a href="https://docs.google.com/spreadsheets/d/1DYo9ZOm28nwN_30mQvJDrVOejD7FqiFGAP_zsB2yhX8/">社内台数管理</a></li>
+<li><a href="https://docs.google.com/spreadsheets/d/1NJV_325eF28VkcTwbCcVtXLJtjFgCmUbrYKuI7pENpU/">FS台数管理シート（営業側）</a></li>
+</ul>
+<p><strong>AIアシスタント（KR3）</strong></p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1yXDZtMwGQU3vXRDHtlNe4uBJgqxIbKrlC8YX0tgtzuA/">AI質問先生ビュー 説明資料</a></li>
+<li><a href="https://docs.google.com/document/d/1fXeShHkgAwlQ83RSsuUKgTipN2TUItfOHqhnQu-rI9g/">AI質問先生ビュー説明会議事録 2026-04-10</a></li>
+</ul>
+</div>
+
+<footer>
+  <ul>
+    <li><a href="https://www.notion.so/3525fd6b740381cc98c8d78e3d8b0a6c">📘 Notion で詳細を見る</a></li>
+    <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
+  </ul>
+  <p class="credit">
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

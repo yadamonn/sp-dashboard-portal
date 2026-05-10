@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O4 AI駆動開発+全社業務自動化</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray-1: #fcfcfd;
+    --gray-2: #f9f9fb;
+    --gray-3: #f0f0f3;
+    --gray-4: #e8e8ec;
+    --gray-6: #d9d9e0;
+    --gray-7: #cdced6;
+    --gray-9: #8b8d98;
+    --gray-11: #60646c;
+    --gray-12: #1c2024;
+    --blue-3: #edf6ff;
+    --blue-9: #0090ff;
+    --blue-11: #0d74ce;
+    --o1: #e5484d;
+    --o1-soft: #ffe5e5;
+    --o2: #0090ff;
+    --o2-soft: #edf6ff;
+    --o3: #30a46c;
+    --o3-soft: #e6f6ec;
+    --o4: #6e56cf;
+    --o4-soft: #f2eefb;
+    --o5: #ffb224;
+    --o5-soft: #fff4d5;
+    --o-current: var(--o4);
+    --o-current-soft: var(--o4-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+    background: var(--gray-2);
+    color: var(--gray-12);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+  .breadcrumb { font-size: 0.875rem; color: var(--gray-11); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--blue-11); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  header { margin-bottom: 2.5rem; }
+  .o-pill {
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: var(--o-current-soft); color: var(--o-current);
+    margin-bottom: 0.75rem;
+  }
+  h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; color: var(--gray-12); line-height: 1.4; }
+  .o-objective {
+    margin: 1rem 0 1.5rem; padding: 1rem 1.25rem;
+    background: #fff; border-left: 3px solid var(--o-current);
+    border-radius: 6px; font-size: 0.95rem; color: var(--gray-12);
+  }
+  .meta-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem 1.5rem; padding: 1rem 1.5rem; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 12px; font-size: 0.875rem;
+  }
+  .meta-bar dt { font-weight: 600; color: var(--gray-11); margin-bottom: 0.2rem; font-size: 0.78rem; }
+  .meta-bar dd { margin: 0; color: var(--gray-12); }
+  .meta-bar dd a { color: var(--blue-11); text-decoration: none; }
+  .meta-bar dd a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em;
+    margin: 3rem 0 1rem; color: var(--gray-12);
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--o-current);
+  }
+  h3 {
+    font-size: 1rem; font-weight: 600;
+    margin: 1.5rem 0 0.75rem; color: var(--gray-12);
+  }
+
+  /* Highlights */
+  .highlights { display: grid; gap: 0.6rem; }
+  .h-item {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start;
+  }
+  .rank {
+    flex-shrink: 0; width: 1.85rem; height: 1.85rem;
+    display: grid; place-items: center; border-radius: 999px;
+    font-weight: 700; font-size: 0.8rem; color: var(--gray-11); background: var(--gray-3);
+  }
+  .rank.medal-gold { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #fff; font-size: 1rem; }
+  .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
+  .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
+  .h-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    padding: 0.15rem 0.5rem; border-radius: 4px;
+    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+  }
+  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
+  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
+  .h-text a:hover { text-decoration: underline; }
+
+  /* KR table */
+  .kr-table {
+    width: 100%; border-collapse: collapse; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 8px; overflow: hidden;
+    font-size: 0.875rem;
+  }
+  .kr-table th, .kr-table td {
+    text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--gray-4);
+    vertical-align: top;
+  }
+  .kr-table th { background: var(--gray-2); font-weight: 600; color: var(--gray-11); font-size: 0.78rem; letter-spacing: 0.02em; }
+  .kr-table tr:last-child td { border-bottom: none; }
+  .kr-id { font-weight: 700; color: var(--o-current); white-space: nowrap; }
+  .status-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    padding: 0.15rem 0.55rem; border-radius: 4px;
+    background: var(--gray-3); color: var(--gray-11);
+  }
+  .status-on-track { background: #e6f6ec; color: #218358; }
+  .status-at-risk { background: #fff4d5; color: #ad6800; }
+  .status-off-track { background: #ffe5e5; color: #c62a2f; }
+  .status-done { background: #edf6ff; color: #0d74ce; }
+  .status-not-started { background: var(--gray-3); color: var(--gray-9); }
+
+  /* KR detail (per-KR sections with measure tables) */
+  .kr-detail {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+  }
+  .kr-detail h3 { margin-top: 0; padding-top: 0; }
+  .kr-detail .empty { color: var(--gray-9); font-size: 0.85rem; font-style: italic; margin: 0.5rem 0 0; }
+  .measure-table {
+    width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem;
+  }
+  .measure-table th, .measure-table td {
+    text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--gray-3);
+    vertical-align: top;
+  }
+  .measure-table th { font-weight: 600; color: var(--gray-11); font-size: 0.75rem; }
+  .measure-table tr:last-child td { border-bottom: none; }
+  .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
+  .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
+  .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+
+  /* Discussion / Resources */
+  .section-block {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .section-block ul { margin: 0; padding-left: 1.4rem; }
+  .section-block li { margin: 0.4rem 0; font-size: 0.9rem; color: var(--gray-12); }
+  .section-block a { color: var(--blue-11); text-decoration: none; }
+  .section-block a:hover { text-decoration: underline; }
+  .section-block h4 { margin: 1.25rem 0 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--gray-12); }
+  .section-block h4:first-child { margin-top: 0; }
+
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-4);
+    font-size: 0.8rem; color: var(--gray-11);
+  }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+  footer a { color: var(--gray-11); text-decoration: none; }
+  footer a:hover { color: var(--blue-11); text-decoration: underline; }
+  .credit { margin-top: 1rem; font-size: 0.75rem; color: var(--gray-9); }
+
+  @media (max-width: 640px) {
+    .container { padding: 1.5rem 1rem 3rem; }
+    h1 { font-size: 1.4rem; }
+    .meta-bar { grid-template-columns: 1fr; }
+    .kr-table { font-size: 0.8rem; }
+    .kr-table th, .kr-table td { padding: 0.55rem; }
+    .measure-name { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<p class="breadcrumb">
+  <a href="../okr-overview.html">← OKR Overview</a>
+</p>
+
+<header>
+  <span class="o-pill">O4</span>
+  <h1>AI駆動開発+全社業務自動化</h1>
+  <div class="o-objective">AI駆動開発と全社業務自動化により、開発スループット+100%・年3000万コスト削減を実現している状態</div>
+  <dl class="meta-bar">
+    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
+    <div><dt>全社OKR連動</dt><dd>全社O3 (Weight 20%)</dd></div>
+    <div><dt>主要責任者</dt><dd><strong>主要責任者</strong>: 島田豊（KR1-3 主担当）/ 大石弘一郎（KR4-5 主担当）/ 澤田 / 伊尾木 / 菅原健人 / 中島花絵</dd></div>
+    <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
+    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: AI駆動開発PJ定例（週次）/ AI経営基盤PJ定例 / 「最強の仕様書を考える会」/ 4/14 AI経営基盤MTG</dd></div>
+    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E9%A7%86%E5%8B%95%E9%96%8B%E7%99%BA">#prod_pjt_ai駆動開発</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_ai%E7%B5%8C%E5%96%B6%E5%9F%BA%E7%9B%A4">#prod_pjt_ai経営基盤</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%85%A8%E7%A4%BE%E6%A5%AD%E5%8B%99%E5%8A%B9%E7%8E%87%E5%8C%96">#prod_pjt_全社業務効率化</a></dd></div>
+  </dl>
+</header>
+
+<h2>🔔 今週のハイライト</h2>
+<div class="highlights">
+  <article class="h-item">
+    <div class="rank medal-gold">🥇</div>
+    <div class="h-body">
+      <span class="h-tag">O4 KR1</span>
+      <h3 class="h-title">開発生産性+100%（merged PR数/月）</h3>
+      <p class="h-text"><a href="https://docs.google.com/document/d/1ONg789ETO4rO1_UPHA_VnGBIWNQEzWf7B12BvKWeRhY/edit">5/6 AI駆動開発PJ定例</a>にてバグ修正PRが全体の約23〜25%を占める実態を再確認し、テストコード行数の減少傾向（アプリコードは増加）が深掘りされた。伊尾木から「価値のないテストは削除している」との補足があり、リポジトリ間での差異の可能性も示唆。次のアクションとしてテストカバレッジ調査を澤田が担当することになった。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-silver">🥈</div>
+    <div class="h-body">
+      <span class="h-tag">O4 KR2</span>
+      <h3 class="h-title">上流工程リードタイム50%圧縮</h3>
+      <p class="h-text"><a href="https://docs.google.com/document/d/1ONg789ETO4rO1_UPHA_VnGBIWNQEzWf7B12BvKWeRhY/edit">5/6 AI駆動開発PJ定例</a>にて、五十嵐・辛島の伴走が順調に完了した実績を踏まえ、次のメンバーである真柴への伴走体制（山田・澤田）が整備中であることを確認した。真柴の残タスクは機能実装が中心で、次フェーズ（羽鳥のPJ）でのフォローも視野に入れている。GW明けのPJM増加プロジェクト再始動を澤田が目標として設定。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-bronze">🥉</div>
+    <div class="h-body">
+      <span class="h-tag">O4 KR1</span>
+      <h3 class="h-title">開発生産性+100%（merged PR数/月）</h3>
+      <p class="h-text"><a href="https://docs.google.com/document/d/1ONg789ETO4rO1_UPHA_VnGBIWNQEzWf7B12BvKWeRhY/edit">5/6 AI駆動開発PJ定例</a>でスクラムのデイリーミーティング廃止案が議論されたが、「相談の場として機能しており、情報取得が難しいメンバーへの配慮も必要」との意見が多く、廃止せず徐々に改善していく方針を確認した。WebAppチームはデイリーの密度を高める方向で検討継続。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">4</div>
+    <div class="h-body">
+      <span class="h-tag">O4 KR2</span>
+      <h3 class="h-title">上流工程リードタイム50%圧縮</h3>
+      <p class="h-text"><a href="https://docs.google.com/document/d/1ONg789ETO4rO1_UPHA_VnGBIWNQEzWf7B12BvKWeRhY/edit">5/6 AI駆動開発PJ定例</a>の議論で、バックログ不足問題（PdM判断未定のIssueが積み残り）が再提起された。エンジニア生産性が1.5倍以上に伸びている一方でIssueが足りないケースがあり、PM AIによるバックログ自動生成・タスク起票権限移譲モデルの構築が改めて重要課題として認識された。PM AI試作（伊尾木）はGW明けの本格着手を予定。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">5</div>
+    <div class="h-body">
+      <span class="h-tag">O4 KR4</span>
+      <h3 class="h-title">SaaS解約・内製化コスト削減</h3>
+      <p class="h-text">5/5〜5/6の期間、競合プレスリリース監視botは「新着なし」での正常稼働を継続した。GW後半も安定稼働を確認。miko.keiei リポジトリへの会社・サービス概要と用語集の追加（伊尾木 PR#26、5/3）は完了済みで、5/5以降はSlack上の追加アクションは特になし。</p>
+    </div>
+  </article>
+</div>
+
+<h2>1. Key Results 一覧</h2>
+<table class="kr-table">
+<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<tbody>
+<tr><td><span class="kr-id">O4-KR1</span></td><td>開発生産性をFY2025対比で+100%向上（merged PR数/エンジニア/月）</td><td><span class="status-badge status-done">進行中</span></td><td></td></tr>
+<tr><td><span class="kr-id">O4-KR2</span></td><td>上流工程（要件定義・仕様策定）リードタイム50%圧縮</td><td><span class="status-badge status-done">進行中</span></td><td></td></tr>
+<tr><td><span class="kr-id">O4-KR3</span></td><td>ユーザー投稿監視の自動化により監視にかかる人的工数を90%削減（教材レビュー/画像チェック含む）</td><td><span class="status-badge status-not-started">未着手</span></td><td>大石弘一郎</td></tr>
+<tr><td><span class="kr-id">O4-KR4</span></td><td>SaaS解約・内製化により2026年9月までに500万円コスト削減（FY2026年間で3,000万円達成）</td><td><span class="status-badge status-done">進行中</span></td><td>大石弘一郎</td></tr>
+<tr><td><span class="kr-id">O4-KR5</span></td><td>TBD：事業部の業務効率化を支援（AIエージェント等による自動化・効率化）し、営業職の業務時間20%削減・デジマ職30%削減に貢献</td><td><span class="status-badge status-not-started">未着手</span></td><td></td></tr>
+</tbody>
+</table>
+
+<h2>2. KR別 進捗状況</h2>
+<div class="kr-detail">
+  <h3><span class="kr-id">O4-KR1</span> 開発生産性をFY2025対比で+100%向上（merged PR数/エンジニア/月）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O4-KR2</span> 上流工程（要件定義・仕様策定）リードタイム50%圧縮</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O4-KR3</span> ユーザー投稿監視の自動化により監視にかかる人的工数を90%削減（教材レビュー/画像チェック含む）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O4-KR4</span> SaaS解約・内製化により2026年9月までに500万円コスト削減（FY2026年間で3,000万円達成）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O4-KR5</span> TBD：事業部の業務効率化を支援（AIエージェント等による自動化・効率化）し、営業職の業務時間20%削減・デジマ職30%削減に貢献</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+
+<h2>3. KR共通論点</h2>
+<div class="section-block">
+<h4>3.1 KR1: 開発生産性 +100%（merged PR数/月） の共通論点</h4>
+<ul>
+<li>PR品質低下リスク（バグ修正25%・テストコード減少）</li>
+<li>マージされずクローズされたPR比率の特定メンバー集中</li>
+</ul>
+<h4>3.2 KR2: 上流工程リードタイム 50%圧縮 の共通論点</h4>
+<ul>
+<li>PM活動の可視化不足（リコール導入予定）</li>
+<li>要件定義承認リードタイム（島田20日〜1ヶ月）</li>
+<li>コンテキスト管理（Claude Code 100万トークン詰まりの問題、セッション分割・圧縮必要）</li>
+<li>バックログ生成の自動化（タスク起票権限移譲モデル構築）</li>
+<li>Anthropicトレーニング選定基準の明確化（廣瀬・西脇相談中）</li>
+</ul>
+<h4>3.3 KR3: ユーザー投稿監視自動化 90%削減 の共通論点</h4>
+<ul>
+<li>業務棚卸しの優先順位</li>
+</ul>
+<h4>3.4 KR4: SaaS解約・内製化 9月500万円・年3,000万円 の共通論点</h4>
+<ul>
+<li>セキュリティ・機密情報管理（機密度の高い情報のリポジトリ分離方針、4/9 常勤役員MTG承認）</li>
+<li>機密情報取扱範囲の論点（AIが経営情報分析時のアクセス範囲未定、従業員透明性・心理的影響）</li>
+<li>法的リスク（個人情報保護法準拠性、外部パートナーへのリポジトリアクセス可否、暗号化基準）</li>
+<li>データ統合アーキテクチャ（Google Drive集約案検討中）</li>
+</ul>
+<h4>3.5 KR5: 事業部業務効率化（営業20%・デジマ30%削減）TBD の共通論点</h4>
+<ul>
+<li>事業部業務効率化スコープ（営業録音PJ別整理）</li>
+</ul>
+</div>
+
+<h2>4. 関連リソース</h2>
+<div class="section-block">
+<p><strong>戦略・資料（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>O4_AI駆動/ — Drive戦略資料</li>
+</ul>
+<p><strong>議事録（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>議事録/Division/ — AI駆動開発PJ定例（週次）/ AI質問システムMTG / AI経営基盤PJ定例</li>
+</ul>
+<p><strong>Slackチャンネル</strong></p>
+<ul>
+<li><code>#pjt_ai駆動開発</code> / <code>#pjt_ai機能開発</code></li>
+<li><code>#pjt_ai経営基盤</code> / <code>#pjt_ai質問システム_all</code></li>
+<li><code>#fs_pjt_ai質問システム</code> / <code>#pjt_aiアシスタント</code></li>
+</ul>
+<p>注: AIアシスタント (面談用カルテ生成) は学習支援機能のため O3 配下。本O4は「AI駆動開発+全社業務自動化」が主スコープ。</p>
+<p><strong>AI駆動開発（KR1-2）</strong></p>
+<ul>
+<li>AI駆動開発PJ定例議事録（週次、Google Drive / executive リポ）</li>
+<li>PM負荷分析ドキュメント（Calendar + GitHub、5ヶ月分、1本に統合予定）</li>
+<li>Claude Code実践ガイド（4/3共有会、Google Drive）</li>
+<li>PdM版Miko試作（Notion/GitHub）</li>
+<li><a href="https://docs.google.com/document/d/1V0EFMhLdNxvEITzKrg4sxQTYptYhbajVPIp-0eTEZI4/">AI駆動開発PJ定例 2026-04-16</a></li>
+<li><a href="https://docs.google.com/document/d/1-DCdNXgufqvasgPjLtAyt1vJbqUvYW8ouuIiYWoQOGk/edit">AI駆動開発PJ定例 2026-04-30</a></li>
+</ul>
+<p><strong>AI経営基盤・全社業務効率化（KR3-5）</strong></p>
+<ul>
+<li><a href="https://docs.google.com/document/d/1ApFJrH5urw_sAB6lCQeDeammICTovzYY0--QvAYSEfE/edit">AI経営基盤PJ定例 2026-04-28</a></li>
+<li>AI経営基盤MTG議事録 2026-04-14</li>
+<li>GitHub オーガナイゼーション: Studyplus Management</li>
+<li>Recall AI 設定（伊尾木予定）</li>
+<li>重要データ一覧スプシ（島田作成予定）</li>
+<li>AI情シスチーム構想書（菅原健人、TBD）</li>
+<li><code>press_watch</code> リポジトリ（studyplus org → studyplus-management 統合予定）</li>
+</ul>
+</div>
+
+<footer>
+  <ul>
+    <li><a href="https://www.notion.so/3525fd6b740381c78feaee9a79cd3de2">📘 Notion で詳細を見る</a></li>
+    <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
+  </ul>
+  <p class="credit">
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

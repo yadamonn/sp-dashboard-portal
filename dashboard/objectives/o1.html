@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O1 進路意思決定アクション日常化・Ads事業ボトルネック解消</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray-1: #fcfcfd;
+    --gray-2: #f9f9fb;
+    --gray-3: #f0f0f3;
+    --gray-4: #e8e8ec;
+    --gray-6: #d9d9e0;
+    --gray-7: #cdced6;
+    --gray-9: #8b8d98;
+    --gray-11: #60646c;
+    --gray-12: #1c2024;
+    --blue-3: #edf6ff;
+    --blue-9: #0090ff;
+    --blue-11: #0d74ce;
+    --o1: #e5484d;
+    --o1-soft: #ffe5e5;
+    --o2: #0090ff;
+    --o2-soft: #edf6ff;
+    --o3: #30a46c;
+    --o3-soft: #e6f6ec;
+    --o4: #6e56cf;
+    --o4-soft: #f2eefb;
+    --o5: #ffb224;
+    --o5-soft: #fff4d5;
+    --o-current: var(--o1);
+    --o-current-soft: var(--o1-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+    background: var(--gray-2);
+    color: var(--gray-12);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+  .breadcrumb { font-size: 0.875rem; color: var(--gray-11); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--blue-11); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  header { margin-bottom: 2.5rem; }
+  .o-pill {
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: var(--o-current-soft); color: var(--o-current);
+    margin-bottom: 0.75rem;
+  }
+  h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; color: var(--gray-12); line-height: 1.4; }
+  .o-objective {
+    margin: 1rem 0 1.5rem; padding: 1rem 1.25rem;
+    background: #fff; border-left: 3px solid var(--o-current);
+    border-radius: 6px; font-size: 0.95rem; color: var(--gray-12);
+  }
+  .meta-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem 1.5rem; padding: 1rem 1.5rem; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 12px; font-size: 0.875rem;
+  }
+  .meta-bar dt { font-weight: 600; color: var(--gray-11); margin-bottom: 0.2rem; font-size: 0.78rem; }
+  .meta-bar dd { margin: 0; color: var(--gray-12); }
+  .meta-bar dd a { color: var(--blue-11); text-decoration: none; }
+  .meta-bar dd a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em;
+    margin: 3rem 0 1rem; color: var(--gray-12);
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--o-current);
+  }
+  h3 {
+    font-size: 1rem; font-weight: 600;
+    margin: 1.5rem 0 0.75rem; color: var(--gray-12);
+  }
+
+  /* Highlights */
+  .highlights { display: grid; gap: 0.6rem; }
+  .h-item {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start;
+  }
+  .rank {
+    flex-shrink: 0; width: 1.85rem; height: 1.85rem;
+    display: grid; place-items: center; border-radius: 999px;
+    font-weight: 700; font-size: 0.8rem; color: var(--gray-11); background: var(--gray-3);
+  }
+  .rank.medal-gold { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #fff; font-size: 1rem; }
+  .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
+  .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
+  .h-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    padding: 0.15rem 0.5rem; border-radius: 4px;
+    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+  }
+  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
+  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
+  .h-text a:hover { text-decoration: underline; }
+
+  /* KR table */
+  .kr-table {
+    width: 100%; border-collapse: collapse; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 8px; overflow: hidden;
+    font-size: 0.875rem;
+  }
+  .kr-table th, .kr-table td {
+    text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--gray-4);
+    vertical-align: top;
+  }
+  .kr-table th { background: var(--gray-2); font-weight: 600; color: var(--gray-11); font-size: 0.78rem; letter-spacing: 0.02em; }
+  .kr-table tr:last-child td { border-bottom: none; }
+  .kr-id { font-weight: 700; color: var(--o-current); white-space: nowrap; }
+  .status-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    padding: 0.15rem 0.55rem; border-radius: 4px;
+    background: var(--gray-3); color: var(--gray-11);
+  }
+  .status-on-track { background: #e6f6ec; color: #218358; }
+  .status-at-risk { background: #fff4d5; color: #ad6800; }
+  .status-off-track { background: #ffe5e5; color: #c62a2f; }
+  .status-done { background: #edf6ff; color: #0d74ce; }
+  .status-not-started { background: var(--gray-3); color: var(--gray-9); }
+
+  /* KR detail (per-KR sections with measure tables) */
+  .kr-detail {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+  }
+  .kr-detail h3 { margin-top: 0; padding-top: 0; }
+  .kr-detail .empty { color: var(--gray-9); font-size: 0.85rem; font-style: italic; margin: 0.5rem 0 0; }
+  .measure-table {
+    width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem;
+  }
+  .measure-table th, .measure-table td {
+    text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--gray-3);
+    vertical-align: top;
+  }
+  .measure-table th { font-weight: 600; color: var(--gray-11); font-size: 0.75rem; }
+  .measure-table tr:last-child td { border-bottom: none; }
+  .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
+  .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
+  .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+
+  /* Discussion / Resources */
+  .section-block {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .section-block ul { margin: 0; padding-left: 1.4rem; }
+  .section-block li { margin: 0.4rem 0; font-size: 0.9rem; color: var(--gray-12); }
+  .section-block a { color: var(--blue-11); text-decoration: none; }
+  .section-block a:hover { text-decoration: underline; }
+  .section-block h4 { margin: 1.25rem 0 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--gray-12); }
+  .section-block h4:first-child { margin-top: 0; }
+
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-4);
+    font-size: 0.8rem; color: var(--gray-11);
+  }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+  footer a { color: var(--gray-11); text-decoration: none; }
+  footer a:hover { color: var(--blue-11); text-decoration: underline; }
+  .credit { margin-top: 1rem; font-size: 0.75rem; color: var(--gray-9); }
+
+  @media (max-width: 640px) {
+    .container { padding: 1.5rem 1rem 3rem; }
+    h1 { font-size: 1.4rem; }
+    .meta-bar { grid-template-columns: 1fr; }
+    .kr-table { font-size: 0.8rem; }
+    .kr-table th, .kr-table td { padding: 0.55rem; }
+    .measure-name { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<p class="breadcrumb">
+  <a href="../okr-overview.html">← OKR Overview</a>
+</p>
+
+<header>
+  <span class="o-pill">O1</span>
+  <h1>進路意思決定アクション日常化・Ads事業ボトルネック解消</h1>
+  <div class="o-objective">Studyplus上で進路意思決定アクションが日常化し、進路選びのプラットフォームとしてAds事業の成長ボトルネックが構造的に解消されている状態</div>
+  <dl class="meta-bar">
+    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
+    <div><dt>全社OKR連動</dt><dd>全社O1 主力大学広告事業部のYoY30%成長 (Weight 30%)</dd></div>
+    <div><dt>主要責任者</dt><dd>プロダクト全体責任者: 島田豊（PdM）<br>プロジェクト責任者: 辛島訓至<br>開発側（エンジニアサイド）責任者: 五十嵐勇人</dd></div>
+    <div><dt>事業側カウンターパート</dt><dd>Ads事業本部: 田中隆之（本部長）、西脇友紀、落合祐人<br>大学広告事業部 (PMF/値上げ・GAM内製化主管): 安倍幸介<br>総合広告事業: 倉林将文（責任者）</dd></div>
+    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: <a href="https://www.notion.so/3275fd6b740380efb9b8ea1722c468da">SP進学マッチングHub</a> / <a href="https://www.notion.so/3115fd6b7403809587e9e01040f3fef7">進学マッチング定例</a> / Adsプロダクト戦略会議（週次）/ SP受験情報メディア将来像検討会</dd></div>
+    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">#prod_pjt_進学マッチング</a> / <a href="https://studyplus.slack.com/app_redirect?channel=pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0_ai%E9%80%B2%E8%B7%AF%E7%9B%B8%E8%AB%87">#pjt_進学マッチング_ai進路相談</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%A1%BE%E4%BA%88%E5%82%99%E6%A0%A1%E9%9B%86%E5%AE%A2%E6%94%AF%E6%8F%B4">#prod_pjt_塾予備校集客支援</a></dd></div>
+  </dl>
+</header>
+
+<h2>🔔 今週のハイライト</h2>
+<div class="highlights">
+  <article class="h-item">
+    <div class="rank medal-gold">🥇</div>
+    <div class="h-body">
+      <span class="h-tag">O1 KR4</span>
+      <h3 class="h-title">塾予備校集客支援売上1,000万円</h3>
+      <p class="h-text"><a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E5%A1%BE%E4%BA%88%E5%82%99%E6%A0%A1%E9%9B%86%E5%AE%A2%E6%94%AF%E6%8F%B4">#prod_pjt_塾予備校集客支援</a>にて5/2に安倍が各案件数値を更新し、4/30開始のインタースティシャル広告導線により詳細ページのPVが5〜6倍に伸長していることを確認。五十嵐も遷移の正常稼働を確認しており、引き続き効果測定を継続中。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-silver">🥈</div>
+    <div class="h-body">
+      <span class="h-tag">O1 KR1</span>
+      <h3 class="h-title">志望校登録数YoY150%</h3>
+      <p class="h-text">GW期間中につき新たな進展はないが、4/30に<a href="https://www.figma.com/design/ak8fd6crmpzbMDigdHLfZn/%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">Figma: 進学マッチング</a>上で案B（イベント主語リスト+フィルター）の仕様レビューが完了済。5/7の仕様書読み合わせを経てリリース目標2026年7月頭に向けて開発着手予定。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-bronze">🥉</div>
+    <div class="h-body">
+      <span class="h-tag">O1 KR2</span>
+      <h3 class="h-title">DR比率70%以下</h3>
+      <p class="h-text">GW期間中につき新たな進展はないが、5/7着手予定のセグメント検索外出しは変更なし。また高校マスタとsteakマスタの乖離リスク（古情報・重複多数）についてGW明けに安倍・落合・五十嵐が確認スコープを整理する方針が前週合意済で、<a href="https://www.notion.so/33d5fd6b740380549df7e9630d95251f">【要件定義書】フォローアップDR改善</a>に基づくPhase 1改修も5月末リリース目標で進行中。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">4</div>
+    <div class="h-body">
+      <span class="h-tag">O1 KR3</span>
+      <h3 class="h-title">進路検討アクション2倍&amp;NPS+15pt</h3>
+      <p class="h-text">GW中につき実質的な議論は未開始。<a href="https://studyplus.slack.com/app_redirect?channel=pjt_%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0_ai%E9%80%B2%E8%B7%AF%E7%9B%B8%E8%AB%87">#pjt_進学マッチング_ai進路相談</a>の分科会発足（4/10）済だが、GW明け5/7以降にキックオフ・UI/UX仕様着手を予定。リリース目標は2026年9月末beta版。</p>
+    </div>
+  </article>
+</div>
+
+<h2>1. Key Results 一覧</h2>
+<table class="kr-table">
+<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<tbody>
+<tr><td><span class="kr-id">O1-KR1</span></td><td>3Q終了時までに高3生「平均志望校登録数」4.6校（FY2025：2.9校）（＝志望校登録数YoY150％）</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+<tr><td><span class="kr-id">O1-KR2</span></td><td>記事タイアップPVにおけるDR比率70%以下を達成</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+<tr><td><span class="kr-id">O1-KR3</span></td><td>進路検討アクションが2倍に増加（大学情報閲覧/イベント情報閲覧/記事閲覧）&amp; NPS「学習に役立つ情報を得られる」+15pt改善</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+<tr><td><span class="kr-id">O1-KR4</span></td><td>塾予備校集客支援サービスの立ち上げを開発面で支援し、FY2026の売上1000万円達成をサポート</td><td><span class="status-badge status-done">進行中</span></td><td>辛島訓至</td></tr>
+</tbody>
+</table>
+
+<h2>2. KR別 進捗状況</h2>
+<div class="kr-detail">
+  <h3><span class="kr-id">O1-KR1</span> 3Q終了時までに高3生「平均志望校登録数」4.6校（FY2025：2.9校）（＝志望校登録数YoY150％）</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O1-KR2</span> 記事タイアップPVにおけるDR比率70%以下を達成</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O1-KR3</span> 進路検討アクションが2倍に増加（大学情報閲覧/イベント情報閲覧/記事閲覧）&amp; NPS「学習に役立つ情報を得られる」+15pt改善</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O1-KR4</span> 塾予備校集客支援サービスの立ち上げを開発面で支援し、FY2026の売上1000万円達成をサポート</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+
+<h2>3. KR共通論点</h2>
+<div class="section-block">
+<h4>3.1 KR1: 志望校登録数 YoY150% の共通論点</h4>
+<ul>
+<li>サービスストーリー全体導線（AI進路相談↔︎志望校探索↔︎登録 の連結未整理）→ 辛島が中長期コンテンツ戦略 Figma/FigJam で整理予定</li>
+<li>プロダクト体験 vs 営業目標のバランス（特定大学優遇懸念）</li>
+</ul>
+<h4>3.2 KR2: 記事タイアップ DR比率 70%以下 の共通論点</h4>
+<ul>
+<li>公式アカウント運用代行の成果指標（フォロー数→出願数の貢献ロジック未定）→ 落合 4/22戦略議論</li>
+<li>晶文社FMT 運用方針（松/竹/梅）未決 → 辛島・落合</li>
+<li>バナー施策の詳細・費用（4/7持ち越し、西脇確認中）</li>
+</ul>
+<h4>3.3 KR3: 進路検討アクション 2倍 &amp; NPS③ +15pt の共通論点</h4>
+<ul>
+<li>サービスストーリー全体導線（AI進路相談↔︎志望校探索↔︎登録 の連結未整理）→ KR1と共通課題</li>
+<li>BtoB→BtoC展開タイミングの先行者利益確保（大手模試・塾予備校競合）</li>
+<li>記事 vs 動画のコンテンツ戦略の言語化</li>
+</ul>
+<h4>3.4 KR4: 塾予備校集客支援 売上1,000万円 の共通論点</h4>
+<ul>
+<li>ドメインブロック（Google/Apple のブロック解消遅延）→ カスタムドメイン作成検討</li>
+<li>申込リスト不具合（コンプライアンスリスク）→ GW前対応必須（小野寺主管）</li>
+<li>KR4 数値目標 詳細（対象校数・売上・単価前提が4/30時点TBD）→ 安倍が辛島に数値管理整備項目を送付予定</li>
+</ul>
+</div>
+
+<h2>4. 関連リソース</h2>
+<div class="section-block">
+<h4>📂 リポジトリ内 関連リソース</h4>
+<p><strong>戦略・資料（Drive sync）</strong></p>
+<ul>
+<li><a href="../O1_進学マッチング/">O1_進学マッチング/</a> — Drive戦略資料（プロダクト側）</li>
+<li><a href="../事業部_Ads/大学広告事業/">事業部_Ads/大学広告事業/</a> — 個別大学資料・媒体資料・商談ログ・デジマ月次・出願レポート</li>
+<li><a href="../事業部_Ads/総合広告事業/">事業部_Ads/総合広告事業/</a> — 模試・イベントマッチング・クイズ企画・マンスリーチャレンジ</li>
+<li><a href="../経営・全社/中期計画/">経営・全社/中期計画/</a> — 中期事業計画_プロダクト部_FY2026-2030</li>
+</ul>
+<p><strong>議事録（Drive sync）</strong></p>
+<ul>
+<li><a href="../議事録/CrossFunctional/">議事録/CrossFunctional/</a> — Adsプロダクト戦略会議（週次）/ 進学マッチング定例 / 大学広告事業部_広告商品戦略会議</li>
+<li><a href="../議事録/Corporate/">議事録/Corporate/</a> — プロダクト方針検討会（隔週）</li>
+</ul>
+<p><strong>Notion DB（自動同期）</strong></p>
+<ul>
+<li><a href="../Notion/O1_進学マッチング/進学マッチング_タスクボード/">Notion/O1_進学マッチング/進学マッチング_タスクボード/</a></li>
+<li><a href="../Notion/O1_進学マッチング/進学マッチング指標達成のための施策/">Notion/O1_進学マッチング/進学マッチング指標達成のための施策/</a></li>
+<li><a href="../Notion/O1_進学マッチング/進学マッチング開発アイテム見立て/">Notion/O1_進学マッチング/進学マッチング開発アイテム見立て/</a></li>
+</ul>
+<p><strong>Slackチャンネル（過去3日分が </strong><code><strong>Slack/{日付}/{ch}.md</strong></code><strong> に取り込み）</strong></p>
+<ul>
+<li><code>#prod_adsプロダクト戦略会議</code> / <code>#prod-ads_discussion</code></li>
+<li><code>#prod_pjt_進学マッチングall</code> / <code>#pjt_進学マッチング_ai進路相談</code></li>
+<li><code>#prod_pjt_塾予備校集客支援</code></li>
+<li><code>#大学広告事業部_all</code> / <code>#ads_大学広告事業部_商談報告</code> / <code>#studyplus_ads事業本部</code></li>
+</ul>
+<h4>Notion / Figma / Drive（外部リンク）</h4>
+<h4>進学マッチング・AI進路相談（KR1-3）</h4>
+<ul>
+<li><a href="https://www.notion.so/3275fd6b740380efb9b8ea1722c468da">SP進学マッチングHub</a></li>
+<li><a href="https://www.notion.so/3115fd6b7403809587e9e01040f3fef7">進学マッチング定例</a></li>
+<li><a href="https://www.notion.so/3265fd6b740380818274fae92bece821">志望校区分 設計・スコープ</a></li>
+<li><a href="https://www.figma.com/board/OX8mNOMiryRVfUNvCiz6Up/%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0pjt">進学マッチング FigJam</a></li>
+<li><a href="https://www.figma.com/make/ZWvS0FdU5HXQdCZlcDL4XC/%E9%80%B2%E5%AD%A6%E3%83%9E%E3%83%83%E3%83%81%E3%83%B3%E3%82%B0">コンセプトビジュアル Figma Make</a></li>
+</ul>
+<h4>KR2（フォローアップDR・タイアップ運用）</h4>
+<ul>
+<li><a href="https://www.notion.so/33d5fd6b740380549df7e9630d95251f">【要件定義書】フォローアップDR改善 (Notion)</a></li>
+<li><a href="https://www.notion.so/3415fd6b">フォローアップDR改修(真柴検討) (Notion)</a></li>
+<li><a href="https://www.notion.so/714b08b6c58e40f3a52c96c3adb258db">フォローアップDR (用語集)</a></li>
+</ul>
+<h4>塾予備校集客支援（KR4）</h4>
+<ul>
+<li><a href="../Projects/塾予備校集客支援/overview.md">executive/Projects/塾予備校集客支援/overview.md</a></li>
+<li><a href="https://docs.google.com/spreadsheets/d/1cWbW9BDc1GBa3r_VnpEU393KV9QuL_rnt39ocPx8VFI/edit">FY2026_総合_模試・イベント送客支援</a></li>
+<li><a href="https://docs.google.com/document/d/1G2Fhd0RwabliYS9D6namq0Q4KfMOJd688WKIZdYof4A/edit">【会議メモ】塾予備校向け集客支援機能</a></li>
+</ul>
+<h4>KR外（スタプラ進学チャンネル）</h4>
+<ul>
+<li><a href="https://docs.google.com/document/d/1thGJd2cEpLL0jeGEiQEiaHjs3cm7HNC6F0Zgd57Zoh8/">スタプラ進学チャンネル企画 2026-03-03（廣瀬起案）</a></li>
+</ul>
+</div>
+
+<footer>
+  <ul>
+    <li><a href="https://www.notion.so/3525fd6b740381c8b844c0fe0bb18b8b">📘 Notion で詳細を見る</a></li>
+    <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
+  </ul>
+  <p class="credit">
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>

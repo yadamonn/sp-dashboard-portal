@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O5 情報セキュリティ・デザイン体系・保守基盤</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gray-1: #fcfcfd;
+    --gray-2: #f9f9fb;
+    --gray-3: #f0f0f3;
+    --gray-4: #e8e8ec;
+    --gray-6: #d9d9e0;
+    --gray-7: #cdced6;
+    --gray-9: #8b8d98;
+    --gray-11: #60646c;
+    --gray-12: #1c2024;
+    --blue-3: #edf6ff;
+    --blue-9: #0090ff;
+    --blue-11: #0d74ce;
+    --o1: #e5484d;
+    --o1-soft: #ffe5e5;
+    --o2: #0090ff;
+    --o2-soft: #edf6ff;
+    --o3: #30a46c;
+    --o3-soft: #e6f6ec;
+    --o4: #6e56cf;
+    --o4-soft: #f2eefb;
+    --o5: #ffb224;
+    --o5-soft: #fff4d5;
+    --o-current: var(--o5);
+    --o-current-soft: var(--o5-soft);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+    background: var(--gray-2);
+    color: var(--gray-12);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+  .breadcrumb { font-size: 0.875rem; color: var(--gray-11); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: var(--blue-11); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  header { margin-bottom: 2.5rem; }
+  .o-pill {
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.05em;
+    padding: 0.25rem 0.7rem; border-radius: 999px;
+    background: var(--o-current-soft); color: var(--o-current);
+    margin-bottom: 0.75rem;
+  }
+  h1 { font-size: 1.75rem; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 .5rem; color: var(--gray-12); line-height: 1.4; }
+  .o-objective {
+    margin: 1rem 0 1.5rem; padding: 1rem 1.25rem;
+    background: #fff; border-left: 3px solid var(--o-current);
+    border-radius: 6px; font-size: 0.95rem; color: var(--gray-12);
+  }
+  .meta-bar {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 0.75rem 1.5rem; padding: 1rem 1.5rem; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 12px; font-size: 0.875rem;
+  }
+  .meta-bar dt { font-weight: 600; color: var(--gray-11); margin-bottom: 0.2rem; font-size: 0.78rem; }
+  .meta-bar dd { margin: 0; color: var(--gray-12); }
+  .meta-bar dd a { color: var(--blue-11); text-decoration: none; }
+  .meta-bar dd a:hover { text-decoration: underline; }
+
+  h2 {
+    font-size: 1.2rem; font-weight: 600; letter-spacing: -0.01em;
+    margin: 3rem 0 1rem; color: var(--gray-12);
+    padding-bottom: 0.5rem; border-bottom: 2px solid var(--o-current);
+  }
+  h3 {
+    font-size: 1rem; font-weight: 600;
+    margin: 1.5rem 0 0.75rem; color: var(--gray-12);
+  }
+
+  /* Highlights */
+  .highlights { display: grid; gap: 0.6rem; }
+  .h-item {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 10px;
+    padding: 1rem 1.25rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 0.85rem; align-items: start;
+  }
+  .rank {
+    flex-shrink: 0; width: 1.85rem; height: 1.85rem;
+    display: grid; place-items: center; border-radius: 999px;
+    font-weight: 700; font-size: 0.8rem; color: var(--gray-11); background: var(--gray-3);
+  }
+  .rank.medal-gold { background: linear-gradient(135deg, #ffd700, #ffaa00); color: #fff; font-size: 1rem; }
+  .rank.medal-silver { background: linear-gradient(135deg, #d8d8d8, #a8a8a8); color: #fff; font-size: 1rem; }
+  .rank.medal-bronze { background: linear-gradient(135deg, #cd9b6c, #a06840); color: #fff; font-size: 1rem; }
+  .h-tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700;
+    padding: 0.15rem 0.5rem; border-radius: 4px;
+    background: var(--o-current-soft); color: var(--o-current); margin-bottom: 0.3rem;
+  }
+  .h-title { font-size: 0.95rem; font-weight: 600; margin: 0 0 0.4rem; color: var(--gray-12); }
+  .h-text { font-size: 0.85rem; color: var(--gray-11); margin: 0; line-height: 1.65; }
+  .h-text a { color: var(--blue-11); text-decoration: none; font-weight: 500; }
+  .h-text a:hover { text-decoration: underline; }
+
+  /* KR table */
+  .kr-table {
+    width: 100%; border-collapse: collapse; background: #fff;
+    border: 1px solid var(--gray-4); border-radius: 8px; overflow: hidden;
+    font-size: 0.875rem;
+  }
+  .kr-table th, .kr-table td {
+    text-align: left; padding: 0.7rem 0.9rem; border-bottom: 1px solid var(--gray-4);
+    vertical-align: top;
+  }
+  .kr-table th { background: var(--gray-2); font-weight: 600; color: var(--gray-11); font-size: 0.78rem; letter-spacing: 0.02em; }
+  .kr-table tr:last-child td { border-bottom: none; }
+  .kr-id { font-weight: 700; color: var(--o-current); white-space: nowrap; }
+  .status-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 600;
+    padding: 0.15rem 0.55rem; border-radius: 4px;
+    background: var(--gray-3); color: var(--gray-11);
+  }
+  .status-on-track { background: #e6f6ec; color: #218358; }
+  .status-at-risk { background: #fff4d5; color: #ad6800; }
+  .status-off-track { background: #ffe5e5; color: #c62a2f; }
+  .status-done { background: #edf6ff; color: #0d74ce; }
+  .status-not-started { background: var(--gray-3); color: var(--gray-9); }
+
+  /* KR detail (per-KR sections with measure tables) */
+  .kr-detail {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+  }
+  .kr-detail h3 { margin-top: 0; padding-top: 0; }
+  .kr-detail .empty { color: var(--gray-9); font-size: 0.85rem; font-style: italic; margin: 0.5rem 0 0; }
+  .measure-table {
+    width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem;
+  }
+  .measure-table th, .measure-table td {
+    text-align: left; padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--gray-3);
+    vertical-align: top;
+  }
+  .measure-table th { font-weight: 600; color: var(--gray-11); font-size: 0.75rem; }
+  .measure-table tr:last-child td { border-bottom: none; }
+  .measure-name { font-weight: 600; color: var(--gray-12); width: 32%; }
+  .measure-progress { color: var(--gray-11); font-size: 0.83rem; }
+  .measure-next { color: var(--gray-11); font-size: 0.83rem; }
+
+  /* Discussion / Resources */
+  .section-block {
+    background: #fff; border: 1px solid var(--gray-4); border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+  }
+  .section-block ul { margin: 0; padding-left: 1.4rem; }
+  .section-block li { margin: 0.4rem 0; font-size: 0.9rem; color: var(--gray-12); }
+  .section-block a { color: var(--blue-11); text-decoration: none; }
+  .section-block a:hover { text-decoration: underline; }
+  .section-block h4 { margin: 1.25rem 0 0.5rem; font-size: 0.9rem; font-weight: 600; color: var(--gray-12); }
+  .section-block h4:first-child { margin-top: 0; }
+
+  footer {
+    margin-top: 4rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-4);
+    font-size: 0.8rem; color: var(--gray-11);
+  }
+  footer ul { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; }
+  footer a { color: var(--gray-11); text-decoration: none; }
+  footer a:hover { color: var(--blue-11); text-decoration: underline; }
+  .credit { margin-top: 1rem; font-size: 0.75rem; color: var(--gray-9); }
+
+  @media (max-width: 640px) {
+    .container { padding: 1.5rem 1rem 3rem; }
+    h1 { font-size: 1.4rem; }
+    .meta-bar { grid-template-columns: 1fr; }
+    .kr-table { font-size: 0.8rem; }
+    .kr-table th, .kr-table td { padding: 0.55rem; }
+    .measure-name { width: auto; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<p class="breadcrumb">
+  <a href="../okr-overview.html">← OKR Overview</a>
+</p>
+
+<header>
+  <span class="o-pill">O5</span>
+  <h1>情報セキュリティ・デザイン体系・保守基盤</h1>
+  <div class="o-objective">情報セキュリティとデザイン体系がStudyplusシリーズ全体で確立され、保守基盤が継続運用されている状態</div>
+  <dl class="meta-bar">
+    <div><dt>最終更新</dt><dd>2026-05-07</dd></div>
+    <div><dt>全社OKR連動</dt><dd>部門独自（プロダクト部 FY2026 OKR 唯一の独自Objective）</dd></div>
+    <div><dt>主要責任者</dt><dd><strong>主要責任者</strong>: 菅原健人（KR1-2・KR5-6）/ 上村裕樹（KR3-4）/ 五十嵐勇人（KR5-6）</dd></div>
+    <div><dt>事業側カウンターパート</dt><dd>—</dd></div>
+    <div><dt>関連定例</dt><dd><strong>関連定例</strong>: デザイン戦略PJ週次定例 / デザイン&amp;PdM MTG / SRE運用 / データ基盤整備MTG（島田豊・菅原健人）</dd></div>
+    <div><dt>Slackチャンネル</dt><dd><strong>Slackチャンネル</strong>: <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_design">#prod_pjt_design</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_sre">#prod_pjt_sre</a> / <a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_%E6%83%85%E5%A0%B1%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3">#prod_pjt_情報セキュリティ</a></dd></div>
+  </dl>
+</header>
+
+<h2>🔔 今週のハイライト</h2>
+<div class="highlights">
+  <article class="h-item">
+    <div class="rank medal-gold">🥇</div>
+    <div class="h-body">
+      <span class="h-tag">O5 KR5</span>
+      <h3 class="h-title">保守・システムアップデート</h3>
+      <p class="h-text">GW期間中も五十嵐勇人が継続作業を実施。5/3の改善デーでは週間目標系エラー調査（Notion調査メモ）に着手。IAM権限最小化（silicon・argon PRレビュー）は継続中。菅原健人不在（〜5/10）によるSREエスカレーション停止・保守NGライン議論の一時停止は継続。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-silver">🥈</div>
+    <div class="h-body">
+      <span class="h-tag">O5 KR4</span>
+      <h3 class="h-title">FSデザインシステム独自構築</h3>
+      <p class="h-text">5/1・5/2のSlackにて、岸より5/14（水）のKRAFTSとの打ち上げ案内が送付され、島田豊・倉光・辻・久保田が参加予定（お茶の水近辺）。シニアプロダクトデザイナー採用は書類選考・一次面接が5月上旬完了予定で継続進行中。デザイン改善定例（<a href="https://studyplus.slack.com/app_redirect?channel=prod_pjt_design">#sp_design_improvement</a>）は引き続き状況変わらず。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank medal-bronze">🥉</div>
+    <div class="h-body">
+      <span class="h-tag">O5 KR1</span>
+      <h3 class="h-title">SRE採用・情セキ責任者就任</h3>
+      <p class="h-text">菅原健人不在（4/29〜5/10）が継続中のため、SRE採用面談・情セキ責任者就任に向けた活動は一時停止状態。候補者5名程度が面談段階にある状況は変わらず、SRE目標・ロードマップ策定（期日5/8）とGPKa準備は5/10復帰後に着手予定となっている。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">4</div>
+    <div class="h-body">
+      <span class="h-tag">O5 KR2</span>
+      <h3 class="h-title">freee IT管理・MDM・EDR・MFA</h3>
+      <p class="h-text">freee IT管理の5月導入予定は、菅原健人不在（4/29〜5/10）により推進担当者が不在の状態が継続。5月中の完了目標達成には5/10復帰後の即時対応が必要な状況で、MDM・EDR・MFA/パスキー導入も引き続き計画段階で動きなし。</p>
+    </div>
+  </article>
+  <article class="h-item">
+    <div class="rank">5</div>
+    <div class="h-body">
+      <span class="h-tag">O5 KR6</span>
+      <h3 class="h-title">自然言語データ基盤整備</h3>
+      <p class="h-text"><a href="https://docs.google.com/document/d/1ApFJrH5urw_sAB6lCQeDeammICTovzYY0--QvAYSEfE/edit">4/28 AI経営基盤PJ定例</a>で確定した全社会議ログ集約方針・役割分担に基づく各本部リストアップ作業は継続中。Google Meet議事録の権限制約調査（伊尾木将之）も継続中。データ基盤外部委託契約申請は菅原健人不在（〜5/10）のため5/10以降に持ち越し中で、今週の新規進展なし。</p>
+    </div>
+  </article>
+</div>
+
+<h2>1. Key Results 一覧</h2>
+<table class="kr-table">
+<thead><tr><th>KR</th><th>本文</th><th>ステータス</th><th>責任者</th></tr></thead>
+<tbody>
+<tr><td><span class="kr-id">O5-KR1</span></td><td>2026年9月までにSRE1名入社・菅原が情報セキュリティ責任者に就任</td><td><span class="status-badge status-done">進行中</span></td><td>kento sugahara</td></tr>
+<tr><td><span class="kr-id">O5-KR2</span></td><td>2026年度中にfreee IT管理・MDM・EDR全社導入＋MFA/パスキー導入による認証強化が完了</td><td><span class="status-badge status-done">進行中</span></td><td>kento sugahara</td></tr>
+<tr><td><span class="kr-id">O5-KR3</span></td><td>Studyplusシリーズ（FS/Ads）の新ロゴが完成し、2026年度中に各掲出場所でのロゴ変更が完了</td><td><span class="status-badge status-done">進行中</span></td><td>上村裕樹</td></tr>
+<tr><td><span class="kr-id">O5-KR4</span></td><td>Studyplus for School デザインシステム独自構築+FSプロダクトUI/LP/各種制作物を刷新</td><td><span class="status-badge status-done">進行中</span></td><td>上村裕樹</td></tr>
+<tr><td><span class="kr-id">O5-KR5</span></td><td>TBD：保守関連／システムアップデートを◯以内に実施、常に安全で最新の環境で開発できる状態を厳守</td><td><span class="status-badge status-done">進行中</span></td><td>kento sugahara</td></tr>
+<tr><td><span class="kr-id">O5-KR6</span></td><td>TBD：データ基盤／事業部門や企画部門が必要なデータを自然言語で抽出できる環境を構築</td><td><span class="status-badge status-done">進行中</span></td><td>kento sugahara 五十嵐勇人</td></tr>
+</tbody>
+</table>
+
+<h2>2. KR別 進捗状況</h2>
+<div class="kr-detail">
+  <h3><span class="kr-id">O5-KR1</span> 2026年9月までにSRE1名入社・菅原が情報セキュリティ責任者に就任</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O5-KR2</span> 2026年度中にfreee IT管理・MDM・EDR全社導入＋MFA/パスキー導入による認証強化が完了</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O5-KR3</span> Studyplusシリーズ（FS/Ads）の新ロゴが完成し、2026年度中に各掲出場所でのロゴ変更が完了</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O5-KR4</span> Studyplus for School デザインシステム独自構築+FSプロダクトUI/LP/各種制作物を刷新</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O5-KR5</span> TBD：保守関連／システムアップデートを◯以内に実施、常に安全で最新の環境で開発できる状態を厳守</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+<div class="kr-detail">
+  <h3><span class="kr-id">O5-KR6</span> TBD：データ基盤／事業部門や企画部門が必要なデータを自然言語で抽出できる環境を構築</h3>
+  <p class="empty">紐付く施策が登録されていません。</p>
+</div>
+
+<h2>3. KR共通論点</h2>
+<div class="section-block">
+<h4>3.1 KR1: SRE採用・情セキ責任者就任（2026-09） の共通論点</h4>
+<ul>
+<li>情セキ責任者空席の構造的宿題</li>
+<li>ISMS移行（FY2027）に向けた個人情報分離アーキテクチャ実装</li>
+</ul>
+<h4>3.2 KR2: freee IT管理・MDM・EDR・MFA/パスキー（FY2026） の共通論点</h4>
+<ul>
+<li>ISMS（ISO 27001）移行（FY2027 構造改革）</li>
+<li>個人情報分離アーキテクチャ実装（FY2027）</li>
+<li>攻めのセキュリティ（FY2028: クライアント向けセキュリティレポート / CSIRT構築 / IT監査 / J-SOX）</li>
+</ul>
+<h4>3.3 KR3: 新ロゴ全社展開（FY2026） の共通論点</h4>
+<ul>
+<li>ブランドDNA全社浸透（営業・CS等への認知未確認）</li>
+<li>ロゴ派生（For School等）優先度・分担</li>
+</ul>
+<h4>3.4 KR4: FSデザインシステム独自構築・LP/制作物刷新 の共通論点</h4>
+<ul>
+<li>上村のリソース集中度が高すぎる（疲弊・離職、判断遅延、体制依存性のリスク）</li>
+<li>デザインG メンバー育成・体制論点（プロセス起点で提案できるシニアデザイナー像への転換）</li>
+<li>AI時代への急速な変化対応（PMがClaude Code等でUI案を自動生成 → デザイナー不要化リスク）</li>
+<li>ノート機能スコープ外化の認識齟齬（事業部はノート込みで承認済み）</li>
+</ul>
+<h4>3.5 KR5: 保守関連／システムアップデート（TBD） の共通論点</h4>
+<ul>
+<li>保守債務の拡大リスク（SRE2名体制、セキュリティ債務、契約足切りリスク）</li>
+<li>保守NGライン指標の具体化（GPKa方針整理段階）</li>
+</ul>
+<h4>3.6 KR6: データ基盤（自然言語で抽出できる環境）TBD の共通論点</h4>
+<ul>
+<li>データ基盤の事業部展開設計（内部工数削減スコープに限定）</li>
+<li>スケーラビリティ（データ量増加時の性能低下対処）</li>
+</ul>
+</div>
+
+<h2>4. 関連リソース</h2>
+<div class="section-block">
+<p><strong>戦略・資料（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>O5_情セキ基盤/ — Drive戦略資料</li>
+</ul>
+<p><strong>議事録（リポジトリ内 Drive sync）</strong></p>
+<ul>
+<li>議事録/Division/ — SRE_Gマネジメント定例 / デザイン&amp;PdM MTG / エンジニア採用定例</li>
+</ul>
+<p><strong>Notion DB（自動同期）</strong></p>
+<ul>
+<li>Notion/横断_デザインシステム/ — Design_System_ルール / Studyplus_ライティングルール / デザインシステム周りタスク管理</li>
+<li>Notion/O3_Notee/リファインロゴ適用_デザインタスク管理/</li>
+</ul>
+<p><strong>横断（リポジトリ内 共通）</strong></p>
+<ul>
+<li>横断_デザインシステム/ — Drive 上のデザイン共通資産</li>
+</ul>
+<p><strong>Slackチャンネル</strong></p>
+<ul>
+<li><code>#sp_design_improvement</code></li>
+<li><code>#prod_dev_all</code> / <code>#prod_dev_web</code> / <code>#prod_dev_server</code> / <code>#prod_dev_sp</code> / <code>#prod_dev_client</code></li>
+<li><code>#prod_incident_report</code> / <code>#emergency</code></li>
+</ul>
+<p><strong>デザイン（KR3/KR4）</strong></p>
+<ul>
+<li>ブランドDNA定義資料（倉光との共同成果）</li>
+<li>新ロゴデザイン（4/1 本番リリース）</li>
+<li>デザインシステム Figma（約200画面対応、カラー・コンポーネント・トークン整備）</li>
+<li><a href="https://docs.google.com/document/d/1goDl_5XAb48eBXfN9Cg-QSis6GFdwvYL80SJFA6Qr2Q/">デザイン戦略PJ週次定例議事録</a></li>
+<li><a href="https://docs.google.com/document/d/1kKTFUHk7lpRorVhVhXAGoCkvrO9dsKQ9N6cizkSKaF4/">デザイン&amp;PdM MTG 2026-04-10</a></li>
+</ul>
+<p><strong>情報セキュリティ・保守・データ基盤（KR1/KR2/KR5/KR6）</strong></p>
+<ul>
+<li><a href="https://studyplus.esa.io/posts/33040">FY2026 情セキ計画 (esa #33040)</a></li>
+<li>データ基盤整備MTG議事録（島田豊・菅原健人 2026-04-21）</li>
+<li>N氏業務委託契約資料（菅原健人 整理中）</li>
+</ul>
+</div>
+
+<footer>
+  <ul>
+    <li><a href="https://www.notion.so/3525fd6b740381baab56feea9cd9bce4">📘 Notion で詳細を見る</a></li>
+    <li><a href="../okr-overview.html">📊 OKR Overview に戻る</a></li>
+  </ul>
+  <p class="credit">
+    Generated by <code>dashboard_objective_pages_generator.py</code> on 2026-05-10 10:31 (JST)<br>
+    Authentication: <code>@studyplus.jp</code> via Cloudflare Access.
+  </p>
+</footer>
+
+</div>
+</body>
+</html>
